@@ -6,11 +6,15 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
 import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { PagesRoutingModule } from './pages.routes';
+import { UserComponent } from './user/user.component';
+import { PcComponent } from './pc/pc.component';
+import { MemoriaComponent } from './memoria/memoria.component';
+import { OtrosComponent } from './otros/otros.component';
 
 
 
 @NgModule({
-  declarations: [ DashboardComponent],
+  declarations: [ DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent],
   exports: [DashboardComponent],
   imports: [CommonModule, ComponentsModule, PagesRoutingModule],
 })
