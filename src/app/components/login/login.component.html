@@ -1,69 +1,89 @@
-<div class="hold-transition login-page">
-    <div class="login-box ">
-        <div class="login-logo">
-          <a><b>TechniDiseño</b></a>
-          <!-- <img src="../../../assets/imgs/tecni.png" style=" width: 45%;" class="rounded mx-auto d-block" alt="..."> -->
-          <!-- <a href="../../../assets/imgs/tecni.png"><a>Admin</a> -->
+<!-- <div class="row">
+  <div class="col-12 margin-left-div" >
+    <div class="text-center">
+      <form class="form-signin" ngNativeValidate #formulario='ngForm' (ngSubmit)= 'login(formulario)'>
+        <img class="mb-4" src="../../../assets/imgs/tecni.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Ingresar</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" [(ngModel)]="email" name="email"placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword"  [(ngModel)]="password" name="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+          <label>
+            <input  [(ngModel)]="recuerdame" name="recuerdame" type="checkbox" value="remember-me"> Recordar
+          </label>
         </div>
-        <!-- /.login-logo -->
-        <div class="card">
-          <div class="card-body login-card-body">
-            <p class="login-box-msg">Iniciar sesión</p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       
-            <form ngNativeValidate #formulario='ngForm' (ngSubmit)= 'login(formulario)'>
-              <div class="input-group mb-3">
-                <input type="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Email">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
+      </form>
+    
+    </div>
+  </div>
+</div>
+
+ -->
+
+ <div class="main-wrapper">
+  <div class="page-wrapper full-page-wrapper d-flex align-items-center justify-content-center">
+    <main class="auth-page">
+      <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+          <div class="stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-1-tablet"></div>
+          <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet">
+            <div class="mdc-card">
+              <form  ngNativeValidate #formulario='ngForm' (ngSubmit)= 'login(formulario)'>
+                <div class="mdc-layout-grid">
+                  <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                      <div class="mdc-text-field w-100">
+                        <input class="mdc-text-field__input"  placeholder="" [(ngModel)]="email" name="email"  id="text-field-hero-input">
+                        <div class="mdc-line-ripple"></div>
+                        <label for="text-field-hero-input" class="mdc-floating-label">Usuario/correo</label>
+                      </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                      <div class="mdc-text-field w-100">
+                        <input class="mdc-text-field__input" type="password"  [(ngModel)]="password" name="password" id="text-field-hero-input">
+                        <div class="mdc-line-ripple"></div>
+                        <label for="text-field-hero-input" class="mdc-floating-label">Password</label>
+                      </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                      <div class="mdc-form-field">
+                        <div class="mdc-checkbox">
+                          <input type="checkbox"
+                                  class="mdc-checkbox__native-control"
+                                  id="checkbox-1"
+                                  [(ngModel)]="recuerdame" name="recuerdame"/>
+                          <div class="mdc-checkbox__background">
+                            <svg class="mdc-checkbox__checkmark"
+                                  viewBox="0 0 24 24">
+                              <path class="mdc-checkbox__checkmark-path"
+                                    fill="none"
+                                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                            </svg>
+                            <div class="mdc-checkbox__mixedmark"></div>
+                          </div>
+                        </div>
+                        <label for="checkbox-1">Remember me</label>
+                      </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop d-flex align-items-center justify-content-end">
+                      <a href="#">Forgot Password</a>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                      <button  class="mdc-button mdc-button--raised w-100">
+                        Login
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <input  [(ngModel)]="password" name="password" type="password" class="form-control" placeholder="Password">
-                <div class="input-group-append">  
-                  <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-8">
-                  <div class="icheck-primary">
-                    <input   [(ngModel)]="recuerdame" name="recuerdame" type="checkbox" id="remember">
-                    <label for="remember">
-                      Remember Me
-                    </label>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-4">
-                  <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                </div>
-                <!-- /.col -->
-              </div>
-            </form>
-      
-            <div class="social-auth-links text-center mb-3">
-              <p>- OR -</p>
-              <a href="#" class="btn btn-block btn-primary">
-                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-              </a>
-              <a href="#" class="btn btn-block btn-danger">
-                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-              </a>
+              </form>
             </div>
-            <!-- /.social-auth-links -->
-      
-            <!-- <p class="mb-1">
-              <a href="forgot-password.html">I forgot my password</a>
-            </p> -->
-            <p class="mb-0">
-              <a class="text-center">Register a new membership</a>
-            </p>
           </div>
-          <!-- /.login-card-body -->
+          <div class="stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-1-tablet"></div>
         </div>
       </div>
-
+    </main>
+  </div>
 </div>

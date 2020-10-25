@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { API } from '../../../config/api';
 
+declare function initPlugings();
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
@@ -11,6 +12,7 @@ export class PagesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    initPlugings();
   }
 
 }

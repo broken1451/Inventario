@@ -10,6 +10,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InterceptorService } from './services/interceptor.service';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InterceptorService } from './services/interceptor.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ComponentsModule
   ],
   providers: [
     {
