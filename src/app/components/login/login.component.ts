@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   public password: string;
   public recuerdame: boolean;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, public router: Router) {
     this.email = '';
     this.password = '';
     this.recuerdame = false;
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
 
 
   async login(formulario: NgForm){
+  try {
     if (formulario.invalid) {
       return;
     }
@@ -42,6 +43,12 @@ export class LoginComponent implements OnInit {
     const usuario = new User(null, formulario.value.email, formulario.value.password);
     const resLogin = await this.authService.login(usuario, formulario.value.recuerdame).toPromise();
     console.log(resLogin);
+    if (resLogin) {
+      // this.router.navigate(['/dashboard']);
+    }
+  } catch (error) {
+    console.log(error)
+  }
   }
 
 }

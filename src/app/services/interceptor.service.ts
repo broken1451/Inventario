@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, from } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
+import { API } from 'src/config/api';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InterceptorService {
+export class InterceptorService implements HttpInterceptor {
 
   constructor() { }
 
@@ -16,26 +17,46 @@ export class InterceptorService {
     console.log('paso por el interceptor');
     console.log(req);
 
-    // const headers = new  HttpHeaders({
-    //   // tslint:disable-next-line: max-line-length
-    // tslint:disable-next-line: max-line-length
-    //   'token-usuario': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDhiNzNhMjA4MWI4NTRiODFmZmEwYjRhOGRiYjZhMSIsInN1YiI6IjVkZjE1NjcwYTI4NGViMDAxMzU4NWYyNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pz-W200RaXXJEHx61VfdMiJ_ENvAl08y-N5_iYU5JfY'
-    // });
+    const token: string = localStorage.getItem('token');
+    let request = req;
 
-    // const cloneReq = req.clone({
-    //   headers
-    // });
 
-    // console.log(cloneReq);
-    // return next.handle(req); // Deja pasar todo
-    return next.handle(req).pipe(
-      catchError(this.manejarErr)
-    ); // Deja pasar todo
+    if (request.url.includes(API.login) || token) {
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      ); // Deja pasar todo
+    }
+    // return this.handle(req, next)
   }
 
   manejarErr(err: HttpErrorResponse){
     console.log('ERROR EN EL SERVIDOR');
     console.warn(err);
-    return throwError('ERROR PERSONALIZADO');
+    return throwError('ERROR PERSONALIZADO'); 
+   }
+
+   async handle(req: HttpRequest<any>, next: HttpHandler){
+    try {
+      console.log('ERROR EN EL SERVIDOR');
+      const token: string = localStorage.getItem('token');
+      let request = req;
+      if (req.url.includes(API.login) || token) {
+        request = req.clone({
+          setHeaders: {
+            'x-token': `${ token }`
+          }
+        });
+        return next.handle(request).pipe(
+          catchError(this.manejarErr)
+        ); // Deja pasar todo
+      }
+    } catch (error) {
+
+    }
    }
 }
