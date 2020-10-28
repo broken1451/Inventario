@@ -44,10 +44,10 @@ export class LoginComponent implements OnInit {
     const resLogin = await this.authService.login(usuario, formulario.value.recuerdame).toPromise();
     console.log(resLogin);
     if (resLogin) {
-      // this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard']);
     }
   } catch (error) {
-    console.log(error)
+    console.log('error', error);
   }
   }
 

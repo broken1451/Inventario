@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { AuthService } from '../../../services/auth.service';
+import { User } from '../../../../classes/user';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  public userActive: User;
+
+  constructor(private authService: AuthService, private userservice: UserService) { }
 
   ngOnInit(): void {
+    this.getAllUsers();
+  }
+
+  async getAllUsers() {
+   try {
+    const users: User = await this.userservice.getAllUsers().toPromise();
+    console.log({users});
+   } catch (error) {
+     console.log(error);
+   }
   }
 
 }

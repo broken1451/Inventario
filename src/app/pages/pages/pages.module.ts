@@ -15,7 +15,7 @@ import { OtrosComponent } from './otros/otros.component';
 
 @NgModule({
   declarations: [ DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent],
-  exports: [DashboardComponent],
+  exports: [DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent],
   imports: [CommonModule, ComponentsModule, PagesRoutingModule],
 })
 export class PagesModule {}

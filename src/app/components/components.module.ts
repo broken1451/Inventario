@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BreadcumbsComponent } from './breadcumbs/breadcumbs.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { PagesRoutingModule } from '../pages/pages/pages.routes';
 
 
 
@@ -10,7 +11,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   declarations: [BreadcumbsComponent, HeaderComponent, SidebarComponent],
   exports: [BreadcumbsComponent, HeaderComponent, SidebarComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    PagesRoutingModule
   ]
 })
 export class ComponentsModule { }

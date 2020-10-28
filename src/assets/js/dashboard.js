@@ -1,3 +1,5 @@
+function initPlugings2() {
+
 (function($) {
     'use strict'; 
     $(function() {
@@ -332,5 +334,5 @@
     });
 })(jQuery);
 
-
+}
 

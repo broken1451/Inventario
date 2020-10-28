@@ -20,8 +20,7 @@ export class InterceptorService implements HttpInterceptor {
     const token: string = localStorage.getItem('token');
     let request = req;
 
-
-    if (request.url.includes(API.login) || token) {
+    if (request.url.includes(API.login) && token) {
       request = req.clone({
         setHeaders: {
           'x-token': `${ token }`
@@ -30,6 +29,16 @@ export class InterceptorService implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError(this.manejarErr)
       ); // Deja pasar todo
+    } else if (request.url.includes(API.user) && token) {
+      console.log('userrrrrrrrrrrrrrrr');
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
     }
     // return this.handle(req, next)
   }

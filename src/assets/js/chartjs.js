@@ -1,4 +1,7 @@
+function initPlugings3() {
+
 $(function () {
+
   /* ChartJS
    * -------
    * Data and config for chartjs
@@ -572,3 +575,5 @@ $(function () {
     });
   }
 });
+
+}
