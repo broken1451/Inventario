@@ -46,7 +46,7 @@ export class InterceptorService implements HttpInterceptor {
   manejarErr(err: HttpErrorResponse){
     console.log('ERROR EN EL SERVIDOR');
     console.warn(err);
-    return throwError('ERROR PERSONALIZADO'); 
+    return throwError(err);
    }
 
    async handle(req: HttpRequest<any>, next: HttpHandler){

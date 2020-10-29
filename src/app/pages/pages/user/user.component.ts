@@ -10,7 +10,7 @@ import { User } from '../../../../classes/user';
 })
 export class UserComponent implements OnInit {
 
-  public userActive: User;
+  public users: User[] = [];
 
   constructor(private authService: AuthService, private userservice: UserService) { }
 
@@ -20,8 +20,14 @@ export class UserComponent implements OnInit {
 
   async getAllUsers() {
    try {
-    const users: User = await this.userservice.getAllUsers().toPromise();
-    console.log({users});
+    const users: any = await this.userservice.getAllUsers().toPromise();
+    if (users) {
+      this.users = users.users.users;
+      console.log(this.users);
+    } else {
+      this.users = [];
+    }
+
    } catch (error) {
      console.log(error);
    }

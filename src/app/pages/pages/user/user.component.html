@@ -10,28 +10,29 @@
                 <table class="table table-hoverable">
                   <thead>
                     <tr>
-                      <th class="text-left">Dessert (100g serving)</th>
-                      <th>Calories</th>
-                      <th>Fat (g)</th>
-                      <th>Link</th>
-                      <th>Carbs</th>
-                      <th>Protein (g)</th>
-                      <th>Sodium (mg)</th>
-                      <th>Calcium (%)</th>
-                      <th>Iron (%)</th>
+                      <th class="text-left">Name</th>
+                      <th class="text-left">Email </th>
+                      <th class="text-left">Created</th>
+                      <th class="text-left">Imagen</th>
+                      <th class="text-left">Options</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-left">Frozen yogurt</td>
-                      <td>1.59</td>
-                      <td>6.0</td>
-                      <td>50</td>
-                      <td>4.0</td>
-                      <td>87</td>
-                      <td>20%</td>
-                      <td>4%</td>
-                      <td>6%</td>
+                    <tr *ngFor="let users of users">
+                      <td class="text-left">{{users.name}}</td>
+                      <td class="text-left">{{users.email}}</td>
+                      <td class="text-left">{{users.created}}</td>
+                      <td class="text-left">
+                        <img [src]="users.img" [alt]="users.img" srcset=""> 
+                      </td>
+                      <td class="text-left">
+                        <button title="Delete" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:13.5313px, 6.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px; padding: 3%;">
+                          <i class="material-icons mdc-button__icon">delete</i>
+                        </button>
+                        <button title="Edit" class="mdc-button mdc-button--raised icon-button filled-button--success mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:9.5625px, 16.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px; padding: 3%; margin-left: 7%;">
+                          <i class="material-icons mdc-button__icon">colorize</i>
+                        </button>
+                      </td>
                     </tr>
                    
                   </tbody>
