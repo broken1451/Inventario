@@ -10,12 +10,14 @@ import { UserComponent } from './user/user.component';
 import { PcComponent } from './pc/pc.component';
 import { MemoriaComponent } from './memoria/memoria.component';
 import { OtrosComponent } from './otros/otros.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [ DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent],
-  exports: [DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent],
-  imports: [CommonModule, ComponentsModule, PagesRoutingModule],
+  declarations: [ DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent],
+  exports: [DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent],
+  imports: [CommonModule, ComponentsModule, PagesRoutingModule, FormsModule, ReactiveFormsModule],
 })
 export class PagesModule {}

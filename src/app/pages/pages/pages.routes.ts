@@ -5,6 +5,7 @@ import { UserComponent } from './user/user.component';
 import { OtrosComponent } from './otros/otros.component';
 import { PcComponent } from './pc/pc.component';
 import { MemoriaComponent } from './memoria/memoria.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'memorias',
     component: MemoriaComponent,
     data: { titulo: 'memorias', descrip: 'Esto es la pagina memorias' },
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    data: { titulo: 'Profile', descrip: 'Esto es la pagina profile' },
   },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
 ];

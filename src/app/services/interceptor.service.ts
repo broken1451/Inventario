@@ -29,8 +29,8 @@ export class InterceptorService implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError(this.manejarErr)
       ); // Deja pasar todo
-    } else if (request.url.includes(API.user) && token) {
-      console.log('userrrrrrrrrrrrrrrr');
+    } else if (request.url.includes(API.create) && token) {
+      console.log('user created');
       request = req.clone({
         setHeaders: {
           'x-token': `${ token }`
@@ -39,8 +39,19 @@ export class InterceptorService implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError(this.manejarErr)
       );
-    }
-    // return this.handle(req, next)
+    } else if (request.url.includes(API.user) && token) {
+      console.log('userrrrrrrrrrrrrrrr');
+      console.log('userrrrrrrrrrrrrrrr ACA');
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
+    } 
+
   }
 
   manejarErr(err: HttpErrorResponse){
