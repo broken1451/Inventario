@@ -19,6 +19,7 @@ declare const $: any;
 export class ProfileComponent implements OnInit {
   public usuario: User;
   public formulario: FormGroup;
+  public formularioUpdate: FormGroup;
 
   constructor(public router: Router , private userService: UserService) {}
 
@@ -50,11 +51,30 @@ export class ProfileComponent implements OnInit {
       password: '',
       password2: ''
     });
+
+    this.formularioUpdate = new FormGroup(
+      {
+        name: new FormControl('', Validators.required),
+        email: new FormControl('', [Validators.required, Validators.email]),
+      });
+
+    this.formularioUpdate.setValue({
+      name: this.usuario.name,
+      email: this.usuario.email,
+    });
   }
 
 
   get form() {
     return this.formulario.controls;
+  }
+
+  get formUpdate() {
+    return this.formularioUpdate.controls;
+  }
+
+  updateUser(){
+    console.log(this.formularioUpdate.value)
   }
 
   async registrarUsuario() {

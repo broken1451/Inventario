@@ -44,5 +44,19 @@ export class UserService {
   }
 
 
+  updateUser(user: User){
+    try {
+      return this.httpClient.put(`${URL}${API.update}${user._id}`, user).pipe(
+        map((user: any) => {
+          console.log('users del map: ', user);
+          return user;
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
 
 }

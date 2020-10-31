@@ -20,7 +20,7 @@ export class InterceptorService implements HttpInterceptor {
     const token: string = localStorage.getItem('token');
     let request = req;
 
-    if (request.url.includes(API.login) && token) {
+    if (request.url.includes(API.login)) {
       request = req.clone({
         setHeaders: {
           'x-token': `${ token }`

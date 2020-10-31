@@ -9,26 +9,28 @@
                       style="width: 6%; --mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:9.625px, 11.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px;">
                 <i class="material-icons mdc-button__icon">add</i>
               </button>
-              <div class="template-demo">
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+
+              <form  [formGroup]="formularioUpdate" class="mdc-card" ngNativeValidate  (ngSubmit)= 'updateUser()'>
+                <div class="template-demo">
+                  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                    <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+                      <input formControlName="name" name="name" class="mdc-text-field__input" >
+                      <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
+                    </div>
+                  </div>                
                   <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-                    <input class="mdc-text-field__input" >
+                    <input formControlName="email" name="email" class="mdc-text-field__input" >
                     <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-                    <label for="text-field-hero-input" class="mdc-floating-label">Nombre</label>
                   </div>
-                </div>                
-                <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-                  <input class="mdc-text-field__input" >
-                  <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-                  <label for="text-field-hero-input" class="mdc-floating-label">Email</label>
                 </div>
-              </div>
-              <button class="mdc-button mdc-button--unelevated mdc-ripple-upgraded" style=" margin-top: 2%; --mdc-ripple-fg-size:57px; --mdc-ripple-fg-scale:1.9675; --mdc-ripple-fg-translate-start:39.5px, -8.5px; --mdc-ripple-fg-translate-end:19.2969px, -10.5px;">
-                Actualizar
-              </button>
-              <button _ngcontent-dsp-c60="" class="margin-top: 2%; mdc-button mdc-button--unelevated filled-button--secondary mdc-ripple-upgraded" style="--mdc-ripple-fg-size:495px;--mdc-ripple-fg-scale:1.69021;--mdc-ripple-fg-translate-start:122.986px, -221.615px;--mdc-ripple-fg-translate-end:165.434px, -229.505px;margin-top: 2%;"> 
-                Cancelar
-               </button>
+                <button class="mdc-button mdc-button--unelevated mdc-ripple-upgraded" style=" margin-top: 2%; --mdc-ripple-fg-size:57px; --mdc-ripple-fg-scale:1.9675; --mdc-ripple-fg-translate-start:39.5px, -8.5px; --mdc-ripple-fg-translate-end:19.2969px, -10.5px;">
+                  Actualizar
+                </button>
+                <button _ngcontent-dsp-c60="" class="margin-top: 2%; mdc-button mdc-button--unelevated filled-button--secondary mdc-ripple-upgraded" style="--mdc-ripple-fg-size:495px;--mdc-ripple-fg-scale:1.69021;--mdc-ripple-fg-translate-start:122.986px, -221.615px;--mdc-ripple-fg-translate-end:165.434px, -229.505px;margin-top: 2%;"> 
+                  Cancelar
+                 </button>
+              </form>
+
             </div>
           </div>
 
@@ -50,195 +52,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">
-          <div class="mdc-layout-grid__cell--span-12">
-            <div class="mdc-card">
-              <h6 class="card-title">Text Field</h6>
-              <div class="template-demo">
-                <div class="mdc-layout-grid__inner">
-                  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                    <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.69484; --mdc-ripple-fg-translate-start:-8px, -193px; --mdc-ripple-fg-translate-end:149.969px, -201.5px;">
-                      <input class="mdc-text-field__input" id="text-field-hero-input">
-                      <div class="mdc-line-ripple" style="transform-origin: 216px center;"></div>
-                      <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
-                    </div>
-                  </div>
-                  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                    <div class="mdc-text-field mdc-text-field--outlined">
-                      <input class="mdc-text-field__input" id="text-field-hero-input">
-                      <div class="mdc-notched-outline mdc-notched-outline--upgraded">
-                        <div class="mdc-notched-outline__leading"></div>
-                        <div class="mdc-notched-outline__notch" style="">
-                          <label for="text-field-hero-input" class="mdc-floating-label" style="">Name</label>
-                        </div>
-                        <div class="mdc-notched-outline__trailing"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                    <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
-                      <i class="material-icons mdc-text-field__icon">favorite</i>
-                      <input class="mdc-text-field__input" id="text-field-hero-input">
-                      <div class="mdc-notched-outline mdc-notched-outline--upgraded">
-                        <div class="mdc-notched-outline__leading"></div>
-                        <div class="mdc-notched-outline__notch" style="">
-                          <label for="text-field-hero-input" class="mdc-floating-label" style="">Name</label>
-                        </div>
-                        <div class="mdc-notched-outline__trailing"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                    <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon">
-                      <i class="material-icons mdc-text-field__icon">visibility</i>
-                      <input class="mdc-text-field__input" id="text-field-hero-input">
-                      <div class="mdc-notched-outline mdc-notched-outline--upgraded">
-                        <div class="mdc-notched-outline__leading"></div>
-                        <div class="mdc-notched-outline__notch" style="">
-                          <label for="text-field-hero-input" class="mdc-floating-label" style="">Name</label>
-                        </div>
-                        <div class="mdc-notched-outline__trailing"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">
-          <div class="mdc-layout-grid__cell--span-12">
-            <div class="mdc-card">
-              <h6 class="card-title">Checkbox</h6>
-              <div class="template-demo">
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox">
-                    <input type="checkbox" class="mdc-checkbox__native-control" id="checkbox-1">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="checkbox-1">Default</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox mdc-checkbox--disabled">
-                    <input type="checkbox" id="basic-disabled-checkbox" class="mdc-checkbox__native-control" disabled="">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Disabled</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox">
-                    <input type="checkbox" id="basic-disabled-checkbox" class="mdc-checkbox__native-control" checked="">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Primary Checked</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox mdc-checkbox--secondary">
-                    <input type="checkbox" id="basic-disabled-checkbox" class="mdc-checkbox__native-control" checked="">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Secondary</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox mdc-checkbox--success">
-                    <input type="checkbox" id="basic-disabled-checkbox" class="mdc-checkbox__native-control" checked="">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Success</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox mdc-checkbox--info">
-                    <input type="checkbox" id="basic-disabled-checkbox" class="mdc-checkbox__native-control" checked="">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Info</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox mdc-checkbox--warning">
-                    <input type="checkbox" id="basic-disabled-checkbox" class="mdc-checkbox__native-control" checked="">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Warning</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox mdc-checkbox--light">
-                    <input type="checkbox" id="basic-disabled-checkbox" class="mdc-checkbox__native-control" checked="">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Light</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox mdc-checkbox--dark">
-                    <input type="checkbox" id="basic-disabled-checkbox" class="mdc-checkbox__native-control" checked="">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Dark</label>
-                </div>
-                <div class="mdc-form-field">
-                  <div class="mdc-checkbox mdc-checkbox--custom">
-                    <input type="checkbox" id="basic-custom-checkbox" class="mdc-checkbox__native-control">
-                    <div class="mdc-checkbox__background">
-                      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                        <path class="mdc-checkbox__checkmark__path" dropzone="" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                      </svg>
-                      <div class="mdc-checkbox__mixedmark"></div>
-                    </div>
-                  </div>
-                  <label for="basic-custom-checkbox">Custom colored</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </main>
 
     <footer>
