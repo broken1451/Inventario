@@ -20,6 +20,9 @@ export class InterceptorService implements HttpInterceptor {
     const token: string = localStorage.getItem('token');
     let request = req;
 
+
+    // TODO hacer esto con un switch
+
     if (request.url.includes(API.login)) {
       request = req.clone({
         setHeaders: {
@@ -30,6 +33,16 @@ export class InterceptorService implements HttpInterceptor {
         catchError(this.manejarErr)
       ); // Deja pasar todo
     } else if (request.url.includes(API.create) && token) {
+      console.log('user created');
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
+    } else if (request.url.includes(API.update) && token) {
       console.log('user created');
       request = req.clone({
         setHeaders: {
@@ -55,7 +68,7 @@ export class InterceptorService implements HttpInterceptor {
   }
 
   manejarErr(err: HttpErrorResponse){
-    console.log('ERROR EN EL SERVIDOR');
+    console.log('ERROR EN EL SERVIDOR', err);
     console.warn(err);
     return throwError(err);
    }

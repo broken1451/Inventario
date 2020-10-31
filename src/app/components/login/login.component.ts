@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
           } else {
             Swal.fire('Invalid', `${err.error.mensaje}`, 'error');
           }
+          console.log({err});
         });
       if (resLogin) {
         this.router.navigate(['/dashboard']);

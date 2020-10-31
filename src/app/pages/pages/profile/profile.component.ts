@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
+
 declare function initPlugings();
 declare function initPlugings1();
 declare function initPlugings2();
@@ -73,8 +74,23 @@ export class ProfileComponent implements OnInit {
     return this.formularioUpdate.controls;
   }
 
-  updateUser(){
-    console.log(this.formularioUpdate.value)
+  async updateUser(){
+
+    try {
+      this.usuario.name = this.formUpdate.name.value;
+      this.usuario.email = this.formUpdate.email.value;
+      const userUpdate: any = await this.userService.updateUser(this.usuario).toPromise();
+      console.log({userUpdate})
+      console.log(userUpdate)
+      if (userUpdate) {
+        Swal.fire(`Usuario ${userUpdate.name}`, `Actualizado existosamente`, 'success');
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   async registrarUsuario() {
@@ -92,13 +108,19 @@ export class ProfileComponent implements OnInit {
       const user: any = await this.userService.createUser(usuario).toPromise();
       if (user) {
         $('#exampleModal').modal('hide');
+        Swal.fire(`Usuario ${user.userCreated.name}`, `Creado existosamente`, 'success');
         this.router.navigate(['/users']);
       } else {
         return false;
       }
       console.log({user});
     } catch (error) {
-      console.log(error);
+        Swal.fire(
+          'Invalid',
+          `${error.error.error.error} / ${error.error.error.message}`,
+          'error'
+        );
+        console.log(error);
     }
 
   }
