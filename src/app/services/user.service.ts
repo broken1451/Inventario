@@ -64,6 +64,19 @@ export class UserService {
     }
   }
 
+  deleteUser(user: User){
+    try {
+      return this.httpClient.delete(`${URL}${API.delete}${user._id}`).pipe(
+        map((userDelete: any) => {
+          console.log('userDelete del map: ', userDelete);
+          return userDelete;
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
 
 }

@@ -14,7 +14,7 @@
                       <th class="text-left">Email </th>
                       <th class="text-left">Created</th>
                       <th class="text-left">Imagen</th>
-                      <th class="text-left">Options</th>
+                      <th class="text-left">Option</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -22,16 +22,19 @@
                       <td class="text-left">{{users.name}}</td>
                       <td class="text-left">{{users.email}}</td>
                       <td class="text-left">{{users.created}}</td>
-                      <td class="text-left">
-                        <img [src]="users.img" [alt]="users.img" srcset=""> 
+                      <td  class="text-left">
+                        <img *ngIf="users.img" [src]="users.img" [alt]="users.img" srcset=""> 
+                        <img  [src]="!users.img" [alt]="users.name" srcset=""> 
                       </td>
                       <td class="text-left">
-                        <button title="Delete" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:13.5313px, 6.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px; padding: 3%;">
+                        <button (click)="borrarUsuario(users)" title="Delete" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:13.5313px, 6.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px; padding: 3%;">
                           <i class="material-icons mdc-button__icon">delete</i>
                         </button>
-                        <button title="Edit" class="mdc-button mdc-button--raised icon-button filled-button--success mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:9.5625px, 16.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px; padding: 3%; margin-left: 7%;">
+                        <!-- TODO Realizr un compente aparte de user para actualizar cada uno -->
+                        <!-- Realizar un componente para actualizar cada usuario de la lista -->
+                        <!-- <button title="Edit" class="mdc-button mdc-button--raised icon-button filled-button--success mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:9.5625px, 16.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px; padding: 3%; margin-left: 7%;">
                           <i class="material-icons mdc-button__icon">colorize</i>
-                        </button>
+                        </button> -->
                       </td>
                     </tr>
                    
