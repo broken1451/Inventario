@@ -5,6 +5,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PagesComponent } from './pages/pages/pages.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/login/register.component';
+import { AuthGuard } from './services/guards/auth.guard';
 
 const routes: Routes = [
   // =================================== Con LazyLoad ==============================================
@@ -14,6 +15,7 @@ const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/pages/pages.module').then((m) => m.PagesModule),
   },

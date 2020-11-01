@@ -56,7 +56,9 @@ export class AuthService {
 
   estaLogueado() {
     try {
+      // tslint:disable-next-line: curly
       if (localStorage.getItem('token') || localStorage.getItem('user')) return true;
+      // tslint:disable-next-line: curly
       else return false;
     } catch (error) {
       console.log(error);
