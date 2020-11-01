@@ -5,7 +5,7 @@
        
           <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
             <div class="mdc-card p-0">
-              <h6 class="card-title card-padding pb-0">Hoverable Table</h6>
+              <h6 class="card-title card-padding pb-0">Usuarios Registrados</h6>
               <div class="table-responsive">
                 <table class="table table-hoverable">
                   <thead>
@@ -21,7 +21,7 @@
                     <tr *ngFor="let users of users">
                       <td class="text-left">{{users.name}}</td>
                       <td class="text-left">{{users.email}}</td>
-                      <td class="text-left">{{users.created}}</td>
+                      <td class="text-left">{{users.created | amLocale: 'es' | amTimeAgo}}</td>
                       <td  class="text-left">
                         <div class="text-center">
                            <img  [src]="users.img | imagen" [alt]="users.img" style="width: 100px; height: 100px;" class="rounded float-left">
@@ -54,7 +54,7 @@
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-            <span class="tx-14">Copyright © 2019 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
+            <span class="tx-14">Copyright © 2020 <a href="https://technidiseno.cl" target="_blank">Technidiseno</a>. All rights reserved.</span>
           </div>
           <!-- <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop d-flex justify-content-end">
             <div class="d-flex align-items-center">

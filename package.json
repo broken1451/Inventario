@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~9.1.11",
     "@angular/platform-browser-dynamic": "~9.1.11",
     "@angular/router": "~9.1.11",
+    "angular2-moment": "^1.9.0",
+    "moment": "^2.29.1",
     "rxjs": "~6.5.4",
     "sweetalert2": "^10.8.1",
     "tslib": "^1.10.0",
