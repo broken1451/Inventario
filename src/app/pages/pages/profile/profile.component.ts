@@ -140,52 +140,59 @@ export class ProfileComponent implements OnInit {
   }
 
   seleccionImage(archivo: File){
-    if (!archivo) {
-      this.imagenSubir = null;
-      return;
+    try {
+      if (!archivo) {
+        this.imagenSubir = null;
+        return;
+      }
+      if (archivo.type.indexOf('image') < 0) {
+        Swal.fire('Solo se permiten imagenes', 'El archivo seleccionado no es una imagen', 'error');
+        this.imagenSubir = null;
+        return;
+      }
+      // si recibimmos un archivo
+      this.imagenSubir = archivo;
+       // Cargar imagen temporal
+      const reader = new FileReader();
+      const urlImagenTemp = reader.readAsDataURL(archivo);
+      reader.onloadend = () => {
+         this.imagenSubirTemp = reader.result;
+         // console.log(reader.result);
+       };
+    } catch (error) {
+      console.log(error)
     }
-    if (archivo.type.indexOf('image') < 0) {
-      Swal.fire('Solo se permiten imagenes', 'El archivo seleccionado no es una imagen', 'error');
-      this.imagenSubir = null;
-      return;
-    }
-    // si recibimmos un archivo
-    this.imagenSubir = archivo;
-     // Cargar imagen temporal
-    const reader = new FileReader();
-    const urlImagenTemp = reader.readAsDataURL(archivo);
-    reader.onloadend = () => {
-       this.imagenSubirTemp = reader.result;
-       // console.log(reader.result);
-     };
   }
 
   cambiarImagen() {
-    // var barra = document.getElementsByClassName('progress');
-    this.loading = true;
-    const interval =  setInterval(() => {
-      this.loading = true;
-      if (this.cont < 100) {
-        // console.log(' this.cont primer if ', this.cont);
-        this.cont = this.cont + 20;
-        this.barraProgreso.nativeElement.style.width = this.cont + '%';
-        this.barraProgreso.nativeElement.innerHTML = this.cont + '%';
-        if (this.cont >= 100) {
-          this.userService.cambiarImagen(this.imagenSubir, this.usuario._id);
-          setTimeout(() => {
-            this.imagenSubirTemp = null;
-            this.imagenSubir =  null;
-          }, 800);
-        }
-      }
 
-      if (this.cont === 100) {
-        clearInterval(interval);
-        this.cont = 0;
-        this.barraProgreso.nativeElement.style.width = this.cont + '%';
-        // this.customFile.nativeElement.value = '';
-       }
-    }, 1000);
+    try {
+      this.loading = true;
+      const interval =  setInterval(() => {
+        this.loading = true;
+        if (this.cont < 100) {
+          // console.log(' this.cont primer if ', this.cont);
+          this.cont = this.cont + 20;
+          this.barraProgreso.nativeElement.style.width = this.cont + '%';
+          this.barraProgreso.nativeElement.innerHTML = this.cont + '%';
+          if (this.cont >= 100) {
+            this.userService.cambiarImagen(this.imagenSubir, this.usuario._id);
+            setTimeout(() => {
+              this.imagenSubirTemp = null;
+              this.imagenSubir =  null;
+            }, 800);
+          }
+        }
+
+        if (this.cont === 100) {
+          clearInterval(interval);
+          this.cont = 0;
+          this.barraProgreso.nativeElement.style.width = this.cont + '%';
+        }
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
 
   }
 

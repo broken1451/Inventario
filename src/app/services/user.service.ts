@@ -24,15 +24,13 @@ export class UserService {
   constructor(private httpClient: HttpClient, private authService: AuthService, private subirArchivoService: SubirArchivoService) {
     this.token =  localStorage.getItem('token');
     this.usuario =  JSON.parse(localStorage.getItem('user'));
-    console.log({usuario: this.usuario});
-   }
+  }
 
 
   getAllUsers(){
     try {
       return this.httpClient.get(`${URL}${API.user}`).pipe(
         map((users: any) => {
-          console.log('users del map: ', users);
           return users;
         })
       );
@@ -45,7 +43,6 @@ export class UserService {
     try {
       return this.httpClient.post(`${URL}${API.create}`, user).pipe(
         map((userCreated: any) => {
-          console.log('userCreated del map: ', userCreated);
           return userCreated;
         })
       );
@@ -61,8 +58,7 @@ export class UserService {
         map((userUpdate: any) => {
           console.log('userUpdate del map: ', userUpdate);
           const userUp: User = userUpdate.userUpdate;
-          console.log('userUp del map: ', userUp);
-          this.authService.guardarStorage( userUp._id , this.token, user)
+          this.authService.guardarStorage( userUp._id , this.token, user);
           return userUp;
         })
       );
@@ -85,15 +81,17 @@ export class UserService {
   }
 
   cambiarImagen(archivo: File, id: string) {
-    console.log({archivo, id});
-    this.subirArchivoService.subirArchivo(archivo, id).then((data: any) => {
-      this.usuario.img = data.usuarioActualizado.img;
-      this.userSubject.next(this.usuario);
-      this.authService.guardarStorage( id , this.token, this.usuario);
-      console.log({data, img:  this.usuario.img });
-    }).catch((err) => {
-      console.log(err);
-    });
+    try {
+      this.subirArchivoService.subirArchivo(archivo, id).then((data: any) => {
+        this.usuario.img = data.usuarioActualizado.img;
+        this.userSubject.next(this.usuario);
+        this.authService.guardarStorage( id , this.token, this.usuario);
+      }).catch((err) => {
+        console.log(err);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 }

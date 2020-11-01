@@ -42,29 +42,52 @@ export class AuthService {
   }
 
   logout() {
-    this.user = null;
-    this.token = '';
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+     try {
+      this.user = null;
+      this.token = '';
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.router.navigate(['/login']);
+     } catch (error) {
+       console.log(error);
+     }
+  }
+
+
+  estaLogueado() {
+    try {
+      if (localStorage.getItem('token') || localStorage.getItem('user')) return true;
+      else return false;
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
 
   guardarStorage(id: string, token: string, user: User ) {
+   try {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.user = user;
     this.token = token;
+   } catch (error) {
+     console.log(error);
+   }
   }
 
   cargarStorage() {
-    if (localStorage.getItem('token') || localStorage.getItem('usuario')) {
-      this.user = JSON.parse(localStorage.getItem('user'));
-      this.token = localStorage.getItem('token');
-    } else {
-      this.user = null;
-      this.token = '';
+    try {
+      if (localStorage.getItem('token') || localStorage.getItem('usuario')) {
+        this.user = JSON.parse(localStorage.getItem('user'));
+        this.token = localStorage.getItem('token');
+      } else {
+        this.user = null;
+        this.token = '';
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 }
