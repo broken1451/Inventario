@@ -11,7 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InterceptorService } from './services/interceptor.service';
 import { ComponentsModule } from './components/components.module';
-import { ImagenPipe } from './pipes/imagen.pipe';
+
 
 
 @NgModule({
@@ -20,8 +20,7 @@ import { ImagenPipe } from './pipes/imagen.pipe';
     LoginComponent,
     RegisterComponent,
     PagesComponent,
-    NotFoundComponent,
-    ImagenPipe,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -12,11 +12,12 @@ import { MemoriaComponent } from './memoria/memoria.component';
 import { OtrosComponent } from './otros/otros.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ImagenPipe } from 'src/app/pipes/imagen.pipe';
 
 
 
 @NgModule({
-  declarations: [ DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent],
+  declarations: [ DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent,ImagenPipe],
   exports: [DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent],
   imports: [CommonModule, ComponentsModule, PagesRoutingModule, FormsModule, ReactiveFormsModule],
 })

@@ -12,11 +12,16 @@ import Swal from 'sweetalert2';
 export class UserComponent implements OnInit {
 
   public users: User[] = [];
+  public userImg: string;
 
-  constructor(private authService: AuthService, private userservice: UserService) { }
+  constructor(private authService: AuthService, private userservice: UserService) {
+    // this.getAllUsers();
+    this.authService.cargarStorage();
+   }
 
   ngOnInit(): void {
     this.getAllUsers();
+    // this.getImgUser();
   }
 
   async getAllUsers() {
@@ -24,13 +29,12 @@ export class UserComponent implements OnInit {
     const users: any = await this.userservice.getAllUsers().toPromise();
     if (users) {
       this.users = users.users.users;
-      console.log(users);
     } else {
       this.users = [];
     }
 
    } catch (error) {
-     console.log(error);
+     console.log('error ', error);
    }
   }
 
@@ -49,7 +53,6 @@ export class UserComponent implements OnInit {
       icon: 'warning',
       confirmButtonText: 'Si!'
     }).then( async (borrar) => {
-        console.log({borrar});
         if (borrar.value) {
           const userDeleted =  await this.userservice.deleteUser(user).toPromise();
           console.log({userDeleted});
@@ -61,8 +64,7 @@ export class UserComponent implements OnInit {
         } else if (borrar.dismiss === Swal.DismissReason.cancel) {
           Swal.fire('Cancelado', 'El Usuario ' + user.name + ' esta a salvo :)', 'info');
         }
-    })
-    console.log({user});
+    });
   }
 
 }

@@ -23,8 +23,9 @@
                       <td class="text-left">{{users.email}}</td>
                       <td class="text-left">{{users.created}}</td>
                       <td  class="text-left">
-                        <img *ngIf="users.img" [src]="users.img" [alt]="users.img" srcset=""> 
-                        <img  [src]="!users.img" [alt]="users.name" srcset=""> 
+                        <div class="text-center">
+                           <img  [src]="users.img | imagen" [alt]="users.img" style="width: 100px; height: 100px;" class="rounded float-left">
+                        </div>
                       </td>
                       <td class="text-left">
                         <button (click)="borrarUsuario(users)" title="Delete" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:13.5313px, 6.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px; padding: 3%;">
