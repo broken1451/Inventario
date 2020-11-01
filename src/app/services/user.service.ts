@@ -37,9 +37,9 @@ export class UserService {
   createUser(user: User){
     try {
       return this.httpClient.post(`${URL}${API.create}`, user).pipe(
-        map((user: any) => {
-          console.log('users del map: ', user);
-          return user;
+        map((userCreated: any) => {
+          console.log('userCreated del map: ', userCreated);
+          return userCreated;
         })
       );
     } catch (error) {
