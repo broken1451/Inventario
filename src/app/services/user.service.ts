@@ -5,6 +5,8 @@ import { User } from 'src/classes/user';
 import { API } from 'src/config/api';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { SubirArchivoService } from './subir-archivo.service';
+import { Subject } from 'rxjs';
 
 const URL = environment.url;
 
@@ -14,10 +16,15 @@ const URL = environment.url;
 export class UserService {
 
   public user: User;
+  public usuario: User;
   private token: string;
+  private userSubject = new Subject<User>();
+  public itemsObservable$ = this.userSubject.asObservable();
 
-  constructor(private httpClient: HttpClient, private authService: AuthService) {
+  constructor(private httpClient: HttpClient, private authService: AuthService, private subirArchivoService: SubirArchivoService) {
     this.token =  localStorage.getItem('token');
+    this.usuario =  JSON.parse(localStorage.getItem('user'));
+    console.log({usuario: this.usuario});
    }
 
 
@@ -55,7 +62,7 @@ export class UserService {
           console.log('userUpdate del map: ', userUpdate);
           const userUp: User = userUpdate.userUpdate;
           console.log('userUp del map: ', userUp);
-          this.authService.guardarStorage( userUp._id ,this.token, user)
+          this.authService.guardarStorage( userUp._id , this.token, user)
           return userUp;
         })
       );
@@ -75,6 +82,18 @@ export class UserService {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  cambiarImagen(archivo: File, id: string) {
+    console.log({archivo, id});
+    this.subirArchivoService.subirArchivo(archivo, id).then((data: any) => {
+      this.usuario.img = data.usuarioActualizado.img;
+      this.userSubject.next(this.usuario);
+      this.authService.guardarStorage( id , this.token, this.usuario);
+      console.log({data, img:  this.usuario.img });
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
 }

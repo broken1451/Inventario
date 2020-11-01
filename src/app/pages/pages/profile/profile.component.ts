@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { User } from '../../../../classes/user';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { Subscription } from 'rxjs';
 
 
 declare function initPlugings();
@@ -18,15 +19,28 @@ declare const $: any;
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+
   public usuario: User;
   public formulario: FormGroup;
   public formularioUpdate: FormGroup;
+  public imagenSubir: File;
+  public imagenSubirTemp: any;
+  public loading: any;
+  public cont: any;
+  public user$: Subscription;
+  @ViewChild('barraProgreso', {static: true}) barraProgreso: ElementRef;
+  @ViewChild('customFile', {static: true}) customFile: ElementRef;
 
   constructor(public router: Router , private userService: UserService) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('user')) {
       this.usuario = JSON.parse(localStorage.getItem('user'));
+      this.loading = false;
+      this.cont = 0;
+      this.user$ = this.userService.itemsObservable$.subscribe((data) => {
+        this.usuario = data;
+      });
     } else {
       this.usuario = null;
     }
@@ -124,6 +138,57 @@ export class ProfileComponent implements OnInit {
     }
 
   }
+
+  seleccionImage(archivo: File){
+    if (!archivo) {
+      this.imagenSubir = null;
+      return;
+    }
+    if (archivo.type.indexOf('image') < 0) {
+      Swal.fire('Solo se permiten imagenes', 'El archivo seleccionado no es una imagen', 'error');
+      this.imagenSubir = null;
+      return;
+    }
+    // si recibimmos un archivo
+    this.imagenSubir = archivo;
+     // Cargar imagen temporal
+    const reader = new FileReader();
+    const urlImagenTemp = reader.readAsDataURL(archivo);
+    reader.onloadend = () => {
+       this.imagenSubirTemp = reader.result;
+       // console.log(reader.result);
+     };
+  }
+
+  cambiarImagen() {
+    // var barra = document.getElementsByClassName('progress');
+    this.loading = true;
+    const interval =  setInterval(() => {
+      this.loading = true;
+      if (this.cont < 100) {
+        // console.log(' this.cont primer if ', this.cont);
+        this.cont = this.cont + 20;
+        this.barraProgreso.nativeElement.style.width = this.cont + '%';
+        this.barraProgreso.nativeElement.innerHTML = this.cont + '%';
+        if (this.cont >= 100) {
+          this.userService.cambiarImagen(this.imagenSubir, this.usuario._id);
+          setTimeout(() => {
+            this.imagenSubirTemp = null;
+            this.imagenSubir =  null;
+          }, 800);
+        }
+      }
+
+      if (this.cont === 100) {
+        clearInterval(interval);
+        this.cont = 0;
+        this.barraProgreso.nativeElement.style.width = this.cont + '%';
+        // this.customFile.nativeElement.value = '';
+       }
+    }, 1000);
+
+  }
+
 
   private sonIguales(campo1: string, campo2: string) {
     // Retornar una funcion
