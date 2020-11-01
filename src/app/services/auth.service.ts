@@ -31,7 +31,6 @@ export class AuthService {
 
       return this.httpClient.post(`${URL}${API.login}`, usuario).pipe(
         map((resLogin: any) => {
-          console.log('resLogin del map: ', resLogin);
           this.guardarStorage(resLogin.userLogin._id, resLogin.token, resLogin.userLogin);
           return resLogin;
         })
@@ -47,6 +46,7 @@ export class AuthService {
       this.token = '';
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('id');
       this.router.navigate(['/login']);
      } catch (error) {
        console.log(error);
