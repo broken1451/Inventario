@@ -15,7 +15,8 @@ export class AuthGuard implements CanActivate {
   // tslint:disable-next-line: max-line-length
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    // tslint:disable-next-line: curly
+   try {
+      // tslint:disable-next-line: curly
     if (this.authService.estaLogueado()) return true;
     else{
       this.router.navigate(['/login']);
@@ -28,9 +29,12 @@ export class AuthGuard implements CanActivate {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Aceptar'
-      })
+      });
       return false;
     }
+   } catch (error) {
+     console.log(error);
+   }
   }
 
 }
