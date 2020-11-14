@@ -27,8 +27,9 @@ export class UserComponent implements OnInit {
   async getAllUsers() {
    try {
     const users: any = await this.userservice.getAllUsers().toPromise();
+    console.log(users);
     if (users) {
-      this.users = users.users.users;
+      this.users = users.users;
     } else {
       this.users = [];
     }

@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { Subscription } from 'rxjs';
 
-
 declare function initPlugings();
 declare function initPlugings1();
 declare function initPlugings2();
@@ -19,7 +18,6 @@ declare const $: any;
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-
   public usuario: User;
   public formulario: FormGroup;
   public formularioUpdate: FormGroup;
@@ -28,10 +26,10 @@ export class ProfileComponent implements OnInit {
   public loading: any;
   public cont: any;
   public user$: Subscription;
-  @ViewChild('barraProgreso', {static: true}) barraProgreso: ElementRef;
-  @ViewChild('customFile', {static: true}) customFile: ElementRef;
+  @ViewChild('barraProgreso', { static: true }) barraProgreso: ElementRef;
+  @ViewChild('customFile', { static: true }) customFile: ElementRef;
 
-  constructor(public router: Router , private userService: UserService) {}
+  constructor(public router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('user')) {
@@ -53,32 +51,30 @@ export class ProfileComponent implements OnInit {
         name: new FormControl('', Validators.required),
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required]),
-        password2: new FormControl('', [Validators.required])
+        password2: new FormControl('', [Validators.required]),
       },
       // Validacion de todo el formulario
       // {validators: funcion}
-      {validators: this.sonIguales('password', 'password2') }
+      { validators: this.sonIguales('password', 'password2') }
     );
 
     this.formulario.setValue({
       name: '',
       email: '',
       password: '',
-      password2: ''
+      password2: '',
     });
 
-    this.formularioUpdate = new FormGroup(
-      {
-        name: new FormControl('', Validators.required),
-        email: new FormControl('', [Validators.required, Validators.email]),
-      });
+    this.formularioUpdate = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+    });
 
     this.formularioUpdate.setValue({
       name: this.usuario.name,
       email: this.usuario.email,
     });
   }
-
 
   get form() {
     return this.formulario.controls;
@@ -88,23 +84,25 @@ export class ProfileComponent implements OnInit {
     return this.formularioUpdate.controls;
   }
 
-  async updateUser(){
-
+  async updateUser() {
     try {
       this.usuario.name = this.formUpdate.name.value;
       this.usuario.email = this.formUpdate.email.value;
-      const userUpdate: any = await this.userService.updateUser(this.usuario).toPromise();
-      console.log({userUpdate})
-      console.log(userUpdate)
+      const userUpdate: any = await this.userService
+        .updateUser(this.usuario)
+        .toPromise();
       if (userUpdate) {
-        Swal.fire(`Usuario ${userUpdate.name}`, `Actualizado existosamente`, 'success');
+        Swal.fire(
+          `Usuario ${userUpdate.name}`,
+          `Actualizado existosamente`,
+          'success'
+        );
       } else {
         return false;
       }
     } catch (error) {
       console.log(error);
     }
-
   }
 
   async registrarUsuario() {
@@ -116,59 +114,65 @@ export class ProfileComponent implements OnInit {
       const usuario = new User(
         this.form.name.value,
         this.form.email.value,
-        this.form.password.value,
+        this.form.password.value
       );
 
       const user: any = await this.userService.createUser(usuario).toPromise();
       if (user) {
         $('#exampleModal').modal('hide');
-        Swal.fire(`Usuario ${user.userCreated.name}`, `Creado existosamente`, 'success');
+        Swal.fire(
+          `Usuario ${user.userCreated.name}`,
+          `Creado existosamente`,
+          'success'
+        );
         this.router.navigate(['/users']);
       } else {
         return false;
       }
-      console.log({user});
+      console.log({ user });
     } catch (error) {
-        Swal.fire(
-          'Invalid',
-          `${error.error.error.error} / ${error.error.error.message}`,
-          'error'
-        );
-        console.log(error);
+      Swal.fire(
+        'Invalid',
+        `${error.error.error.error} / ${error.error.error.message}`,
+        'error'
+      );
+      console.log(error);
     }
-
   }
 
-  seleccionImage(archivo: File){
+  seleccionImage(archivo: File) {
     try {
       if (!archivo) {
         this.imagenSubir = null;
         return;
       }
       if (archivo.type.indexOf('image') < 0) {
-        Swal.fire('Solo se permiten imagenes', 'El archivo seleccionado no es una imagen', 'error');
+        Swal.fire(
+          'Solo se permiten imagenes',
+          'El archivo seleccionado no es una imagen',
+          'error'
+        );
         this.imagenSubir = null;
         return;
       }
       // si recibimmos un archivo
       this.imagenSubir = archivo;
-       // Cargar imagen temporal
+      // Cargar imagen temporal
       const reader = new FileReader();
       const urlImagenTemp = reader.readAsDataURL(archivo);
       reader.onloadend = () => {
-         this.imagenSubirTemp = reader.result;
-         // console.log(reader.result);
-       };
+        this.imagenSubirTemp = reader.result;
+        // console.log(reader.result);
+      };
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   cambiarImagen() {
-
     try {
       this.loading = true;
-      const interval =  setInterval(() => {
+      const interval = setInterval(() => {
         this.loading = true;
         if (this.cont < 100) {
           // console.log(' this.cont primer if ', this.cont);
@@ -179,7 +183,7 @@ export class ProfileComponent implements OnInit {
             this.userService.cambiarImagen(this.imagenSubir, this.usuario._id);
             setTimeout(() => {
               this.imagenSubirTemp = null;
-              this.imagenSubir =  null;
+              this.imagenSubir = null;
             }, 800);
           }
         }
@@ -193,13 +197,11 @@ export class ProfileComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
-
   }
-
 
   private sonIguales(campo1: string, campo2: string) {
     // Retornar una funcion
-    return ((group: FormGroup) => {
+    return (group: FormGroup) => {
       const pass1 = group.controls[campo1].value;
       const pass2 = group.controls[campo2].value;
       // console.log({ grupo: group});
@@ -209,9 +211,8 @@ export class ProfileComponent implements OnInit {
       }
 
       return {
-        sonIguales: true
+        sonIguales: true,
       };
-
-    });
+    };
   }
 }

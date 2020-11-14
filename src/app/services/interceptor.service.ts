@@ -73,8 +73,6 @@ export class InterceptorService implements HttpInterceptor {
         catchError(this.manejarErr)
       );
     } else if (request.url.includes(API.user) && token) {
-      // console.log('userrrrrrrrrrrrrrrr');
-      // console.log('userrrrrrrrrrrrrrrr ACA');
       request = req.clone({
         setHeaders: {
           'x-token': `${ token }`

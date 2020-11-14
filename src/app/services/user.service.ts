@@ -57,7 +57,7 @@ export class UserService {
       return this.httpClient.put(`${URL}${API.update}${user._id}`, user).pipe(
         map((userUpdate: any) => {
           console.log('userUpdate del map: ', userUpdate);
-          const userUp: User = userUpdate.userUpdate;
+          const userUp: User = userUpdate.userUpdateSave;
           this.authService.guardarStorage( userUp._id , this.token, user);
           return userUp;
         })
@@ -82,8 +82,9 @@ export class UserService {
 
   cambiarImagen(archivo: File, id: string) {
     try {
+      console.log({id})
       this.subirArchivoService.subirArchivo(archivo, id).then((data: any) => {
-        this.usuario.img = data.usuarioActualizado.img;
+        this.usuario.img = data.user.img;
         this.userSubject.next(this.usuario);
         this.authService.guardarStorage( id , this.token, this.usuario);
       }).catch((err) => {
