@@ -98,45 +98,37 @@
       </div>
       <div class="modal-body">
         <!-- <form  ngNativeValidate [formGroup]="formulario" (ngSubmit)='registrarUsuario()'> -->
-        <form  ngNativeValidate>
-          <div class="template-demo">
-            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+          <form [formGroup]="formularioCreatePc"  name="myformCreated" novalidate  (ngSubmit)= 'createPc()' ngNativeValidate>
+            <div class="template-demo"> 
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+                  <input class="mdc-text-field__input" formControlName="name"  name='name'  placeholder="Nombre" required >
+                  <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
+                  <label for="text-field-hero-input" class="mdc-floating-label">Nombre</label>
+                </div>
+              </div>  
+
               <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-                <input class="mdc-text-field__input"  name="name" placeholder="Nombre" required >
+                <input class="mdc-text-field__input" required hidden>
+                <select formControlName="type"  name='type' id="" class="form-control" required>
+                  <option [ngValue]="undefined" hidden>Seleccione un tipo de pc</option>
+                  <option *ngFor="let typePc of typePc">{{typePc.name}}</option>
+                </select>
                 <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-                <label for="text-field-hero-input" class="mdc-floating-label">Nombre</label>
               </div>
-            </div>                
-            <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-              <input class="mdc-text-field__input"  name="email" placeholder="Email" required >
-              <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-              <label for="text-field-hero-input" class="mdc-floating-label">Email</label>
+
+              <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+                <input class="mdc-text-field__input" formControlName="description"  name='description'  placeholder="description" required >
+                <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
+                <label for="text-field-hero-input" class="mdc-floating-label">Descripcion</label>
+              </div>
+
             </div>
-            <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-              <input type="password"  name="password" placeholder="Password" class="mdc-text-field__input" required>
-              <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-              <label for="text-field-hero-input" class="mdc-floating-label">Password</label>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-block" style="background-color: #ff420f;" data-dismiss="modal">Close</button>
+              <button type="submit"  class="btn btn-primary btn-block"  style="background-color: var(--mdc-theme-primary, #7a00ff);">Crear Pc</button>
             </div>
-            <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-              <input  type="password"  name="password2" placeholder="Repeat Password"  class="mdc-text-field__input" required >
-              <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-              <label for="text-field-hero-input" class="mdc-floating-label">Repeat Password</label>
-            </div>
-
-
-            <!-- <div *ngIf="formulario.errors?.sonIguales && !formulario.pristine" class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-              <p class="text-danger"> Las claves deben ser iguales </p>
-            </div> -->
-
-    
-
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" style="background-color: #ff420f;" data-dismiss="modal">Close</button>
-            <!-- <button type="submit" class="btn btn-primary" [disabled]='formulario.invalid' style="background-color: var(--mdc-theme-primary, #7a00ff);">Create User</button> -->
-          </div>
-        </form>
+          </form>
 
       </div>
     </div>
@@ -158,7 +150,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <form  ngNativeValidate [formGroup]="formulario" (ngSubmit)='registrarUsuario()'> -->
         <form  [formGroup]="formularioUpdatePc"  (ngSubmit)= 'updatePc()' ngNativeValidate>
           <div class="template-demo">
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
@@ -171,13 +162,15 @@
               <input class="mdc-text-field__input" formControlName="description"  name="description" placeholder="description" required >
               <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
             </div>
-            <!-- <div *ngIf="formulario.errors?.sonIguales && !formulario.pristine" class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-              <p class="text-danger"> Las claves deben ser iguales </p>
-            </div> -->
           </div>
+
+          <div *ngIf="formUpdate.name.value == '' && formUpdate.description.value == ''" class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+            <p class="text-danger"> Ningun campo puede estar vacio </p>
+          </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-block" style="background-color: #ff420f;" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary btn-block"  style="background-color: var(--mdc-theme-primary, #7a00ff);">Actualizar Pc</button>
+            <button type="submit" [disabled]= 'formularioUpdatePc.invalid' class="btn btn-primary btn-block"  style="background-color: var(--mdc-theme-primary, #7a00ff);">Actualizar Pc</button>
           </div>
         </form>
 

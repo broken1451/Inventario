@@ -17,7 +17,9 @@ export class PcComponent implements OnInit {
 
   public pcs: Pc;
   public pc: Pc;
+  public typePc: any[] = [];
   public formularioUpdatePc: FormGroup;
+  public formularioCreatePc: FormGroup;
 
   constructor(private pcService: PcService, private router: Router) { }
 
@@ -27,6 +29,14 @@ export class PcComponent implements OnInit {
       name: new FormControl('', Validators.required),
       description: new FormControl('', [Validators.required]),
     });
+
+    this.formularioCreatePc = new FormGroup({
+      name: new FormControl('', Validators.required),
+      type: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+    });
+
+    this.typePc = this.pcService.getTypes();
   }
 
   async getAllPcs() {
@@ -45,6 +55,10 @@ export class PcComponent implements OnInit {
 
   get formUpdate() {
     return this.formularioUpdatePc.controls;
+  }
+
+  get formCreate() {
+    return this.formularioCreatePc.controls;
   }
 
 
@@ -77,6 +91,39 @@ export class PcComponent implements OnInit {
     }
 
   }
+
+
+  async createPc(){
+   try {
+    if (this.formularioCreatePc.invalid) {
+      return;
+    }
+    const pc = new Pc(
+      this.formCreate.name.value,
+      this.formCreate.type.value,
+      this.formCreate.description.value
+    );
+    // console.log({pc})
+    const pcCreated: any = await this.pcService.createPc(pc).toPromise();
+    if (pcCreated) {
+      $('#createPc').modal('hide');
+      console.log({pcCreated});
+      Swal.fire(
+        `Pc con el nombre ${pcCreated.pcs.name}`,
+        `Creado existosamente`,
+        'success'
+      );
+      this.getAllPcs();
+    } else {
+      return false;
+    }
+    console.log({pcCreated});
+
+   } catch (error) {
+     console.log(error);
+   }
+  }
+
 
   delete(pc: Pc) {
     Swal.fire({
