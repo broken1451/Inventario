@@ -3,7 +3,6 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, Http
 import { Observable, throwError, from } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { API } from 'src/config/api';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +72,25 @@ export class InterceptorService implements HttpInterceptor {
         catchError(this.manejarErr)
       );
     } else if (request.url.includes(API.user) && token) {
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
+    } else if (request.url.includes(API.pcDelete) && token) {
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
+    }
+    else if (request.url.includes(API.pc) && token) {
       request = req.clone({
         setHeaders: {
           'x-token': `${ token }`

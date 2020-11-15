@@ -5,8 +5,10 @@ export enum API {
     update = 'user/update/',
     upload = 'user/upload/usuario/',
     delete = 'user/delete/',
+    pc = 'pc',
+    pcDelete = 'pc/delete',
     imgUser = 'img/usuario/',
-    imgPC = 'pc/img/pc/',
-    imgOtros = 'otros/img/otros/',
+    imgPC = 'img/pc/',
+    imgOtros = 'img/otros/',
     imgMemoria = 'memoria/img/memoria/'
 }

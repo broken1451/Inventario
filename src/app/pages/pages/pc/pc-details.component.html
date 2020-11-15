@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    
+                    <div class="preview-pic tab-content">
+                      <div class="tab-pane active" id="pic-1" style="height: 100% !important;">
+                        <img style="height: 100%;" [src]="pcImg |imagen:'pc'" />
+                    </div>
+                    </div>
+             
+                    
+                </div>
+                <div *ngIf="pc" class="details col-md-6 text-center" style="margin-top: 15%;">
+                    <h3 class="product-title">{{pc.name}}</h3>
+                    <p class="product-description">{{pc.description}}</p>
+                    <h4 class="">Tipo: <span>{{pc.type}}</span></h4>
+                    <div class="action">
+                    </div>
+                    <button (click)="back()" class="btn mt-3" style="background: #7a00ff; color: white;" type="button">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

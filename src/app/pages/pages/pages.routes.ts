@@ -6,6 +6,8 @@ import { OtrosComponent } from './otros/otros.component';
 import { PcComponent } from './pc/pc.component';
 import { MemoriaComponent } from './memoria/memoria.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PcDetailsComponent } from './pc/pc-details.component';
+
 
 const routes: Routes = [
   {
@@ -37,6 +39,11 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     data: { titulo: 'Profile', descrip: 'Esto es la pagina profile' },
+  },
+  {
+    path: 'details/:id',
+    component: PcDetailsComponent,
+    data: { titulo: 'Details', descrip: 'Esto es la detalles del pc' },
   },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
 ];

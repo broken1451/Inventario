@@ -14,12 +14,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipeModule } from '../../pipes/pipe.module';
 import { MomentModule } from 'angular2-moment';
+import { PcDetailsComponent } from './pc/pc-details.component';
 
 
 
 @NgModule({
-  declarations: [ DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent],
-  exports: [DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent],
+  declarations: [ DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent, PcDetailsComponent],
+  exports: [DashboardComponent, UserComponent, PcComponent, MemoriaComponent, OtrosComponent, ProfileComponent, PcDetailsComponent],
   imports: [CommonModule, ComponentsModule, PagesRoutingModule, FormsModule, ReactiveFormsModule, PipeModule, MomentModule],
 })
 export class PagesModule {}

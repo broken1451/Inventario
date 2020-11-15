@@ -13,7 +13,6 @@ export class SubirArchivoService {
 
   // tslint:disable-next-line: max-line-length
   subirArchivo(archivo: File, id: string) { // tipo de imagen es usuarios,medicos o hospitales , id del objeto a actualizar
-    console.log('id subir img',{id})
     return new Promise( (resolve, reject) => {
 
        const formData = new FormData(); // esto es todo el payload que quiero mandar a subir
@@ -58,8 +57,6 @@ export class SubirArchivoService {
 
        // Peticion al servicio
        const url = `${environment.url}${API.upload}${id}`;
-       console.log({url});
-       console.log(localStorage.getItem('token'))
        // xhr.open('metodo', peticion de servicio, decidir si es asincrono o no);
        xhr.open('PUT', url, true);
        xhr.setRequestHeader('x-token', localStorage.getItem('token'));

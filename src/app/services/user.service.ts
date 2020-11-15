@@ -15,7 +15,6 @@ const URL = environment.url;
 })
 export class UserService {
 
-  public user: User;
   public usuario: User;
   private token: string;
   private userSubject = new Subject<User>();
@@ -82,7 +81,6 @@ export class UserService {
 
   cambiarImagen(archivo: File, id: string) {
     try {
-      console.log({id})
       this.subirArchivoService.subirArchivo(archivo, id).then((data: any) => {
         this.usuario.img = data.user.img;
         this.userSubject.next(this.usuario);

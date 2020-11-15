@@ -1,1 +1,30 @@
-<p>pc works!</p>
+<div class="row">
+  <!-- <button  class="btn btn-primary btn-block" style="background: #7a00ff;" >Exportar pdf</button> -->
+
+    <div class="col-2 mb-4 ml-5 mt-4" *ngFor="let pcs of pcs">
+      <div class="card h-100" >
+        <img [src]=" pcs.img | imagen:'pc'" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{pcs.name}}</h5>
+          <p class="card-text">{{pcs.description}}</p>
+          <button  class="btn btn-primary btn-block" (click)="goTodetails(pcs._id)" style="background: #7a00ff;" >Ir al detalle</button>
+          <button  class="btn btn-info btn-block" (click)="update(pcs)" >Actualizar</button>
+          <button  class="btn btn-danger btn-block" (click)="delete(pcs)"  >Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="sticky-container">
+    <ul class="sticky">
+        <li>
+          <!-- <button width="32" height="32" class="mdc-button mdc-button--raised icon-button filled-button--warning mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:16.625px, 15.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px;">
+          </button> -->
+          <button class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded" style="--mdc-ripple-fg-size:56px; --mdc-ripple-fg-scale:1.96926; --mdc-ripple-fg-translate-start:46.7188px, -13px; --mdc-ripple-fg-translate-end:18.7969px, -10px;">
+            <i class="material-icons mdc-button__icon">add</i>
+            <p><a style="text-decoration: none; color: white;"> Agregar Pc</a></p>
+          </button>
+        </li>
+    </ul>
+</div>
