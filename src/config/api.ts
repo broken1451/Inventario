@@ -7,6 +7,7 @@ export enum API {
     delete = 'user/delete/',
     pc = 'pc',
     pcDelete = 'pc/delete',
+    pcUpdate = 'pc/update',
     imgUser = 'img/usuario/',
     imgPC = 'img/pc/',
     imgOtros = 'img/otros/',

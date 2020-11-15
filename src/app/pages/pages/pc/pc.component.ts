@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Pc } from 'src/app/classes/pc';
 import { PcService } from '../../../services/pc.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+declare const $: any;
 
 @Component({
   selector: 'app-pc',
@@ -11,12 +15,18 @@ import Swal from 'sweetalert2';
 })
 export class PcComponent implements OnInit {
 
-  public pcs: Pc[] = [];
+  public pcs: Pc;
+  public pc: Pc;
+  public formularioUpdatePc: FormGroup;
 
   constructor(private pcService: PcService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllPcs();
+    this.formularioUpdatePc = new FormGroup({
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', [Validators.required]),
+    });
   }
 
   async getAllPcs() {
@@ -26,14 +36,47 @@ export class PcComponent implements OnInit {
         console.log(pcs);
         this.pcs = pcs.pcs;
       } else {
-        this.pcs = [];
+        this.pcs = null;
       }
      } catch (error) {
         console.log('error ', error);
      }
   }
 
-  update(pc: Pc) {}
+  get formUpdate() {
+    return this.formularioUpdatePc.controls;
+  }
+
+
+  update(pc: Pc) {
+    this.pc = pc;
+    this.formularioUpdatePc.setValue({
+      name: pc.name,
+      description: pc.description,
+    });
+  }
+
+  async updatePc(){
+    try {
+      this.pc.name = this.formUpdate.name.value;
+      this.pc.description = this.formUpdate.description.value;
+      const pcUpdate: any = await this.pcService.updatePc(this.pc).toPromise();
+      if (pcUpdate) {
+        $('#updatePc').modal('hide');
+        // console.log({pcUpdate})
+        Swal.fire(
+          `Pc ${pcUpdate.pcUpdateSave.name}`,
+          `Actualizado existosamente`,
+          'success'
+        );
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   delete(pc: Pc) {
     Swal.fire({

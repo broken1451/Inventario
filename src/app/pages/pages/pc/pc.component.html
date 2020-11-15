@@ -159,43 +159,25 @@
       </div>
       <div class="modal-body">
         <!-- <form  ngNativeValidate [formGroup]="formulario" (ngSubmit)='registrarUsuario()'> -->
-        <form  ngNativeValidate>
+        <form  [formGroup]="formularioUpdatePc"  (ngSubmit)= 'updatePc()' ngNativeValidate>
           <div class="template-demo">
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
               <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-                <input class="mdc-text-field__input"  name="name" placeholder="Nombre" required >
+                <input class="mdc-text-field__input" formControlName="name"   name="name" placeholder="Nombre" required >
                 <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-                <label for="text-field-hero-input" class="mdc-floating-label">Nombre</label>
               </div>
             </div>                
             <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-              <input class="mdc-text-field__input"  name="email" placeholder="Email" required >
+              <input class="mdc-text-field__input" formControlName="description"  name="description" placeholder="description" required >
               <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-              <label for="text-field-hero-input" class="mdc-floating-label">Email</label>
             </div>
-            <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-              <input type="password"  name="password" placeholder="Password" class="mdc-text-field__input" required>
-              <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-              <label for="text-field-hero-input" class="mdc-floating-label">Password</label>
-            </div>
-            <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
-              <input  type="password"  name="password2" placeholder="Repeat Password"  class="mdc-text-field__input" required >
-              <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
-              <label for="text-field-hero-input" class="mdc-floating-label">Repeat Password</label>
-            </div>
-
-
             <!-- <div *ngIf="formulario.errors?.sonIguales && !formulario.pristine" class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
               <p class="text-danger"> Las claves deben ser iguales </p>
             </div> -->
-
-    
-
-
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" style="background-color: #ff420f;" data-dismiss="modal">Close</button>
-            <!-- <button type="submit" class="btn btn-primary" [disabled]='formulario.invalid' style="background-color: var(--mdc-theme-primary, #7a00ff);">Create User</button> -->
+            <button type="button" class="btn btn-secondary btn-block" style="background-color: #ff420f;" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary btn-block"  style="background-color: var(--mdc-theme-primary, #7a00ff);">Actualizar Pc</button>
           </div>
         </form>
 

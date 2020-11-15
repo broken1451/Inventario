@@ -50,6 +50,19 @@ export class PcService {
   }
 
 
+  updatePc(pc: Pc){
+    // http://localhost:3000/pc/update/5fa869e68794223ccd3d5cb2
+    try {
+      return this.httpClient.put(`${URL}${API.pcUpdate}/${pc._id}`, pc).pipe(
+        map((pcUpdate: Pc) => {
+          return pcUpdate;
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   deletePc(pc: Pc){
     try {
