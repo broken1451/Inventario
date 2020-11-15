@@ -20,10 +20,19 @@ export class PcComponent implements OnInit {
   public typePc: any[] = [];
   public formularioUpdatePc: FormGroup;
   public formularioCreatePc: FormGroup;
+  public imagenSubir: File;
+  public imagenSubirTemp: any;
+  public loading: any;
+  public cont: any;
+  public pc$: Subscription;
+  @ViewChild('barraProgreso', { static: true }) barraProgreso: ElementRef;
+  @ViewChild('customFile', { static: true }) customFile: ElementRef;
 
   constructor(private pcService: PcService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = false;
+    this.cont = 0;
     this.getAllPcs();
     this.formularioUpdatePc = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -107,7 +116,6 @@ export class PcComponent implements OnInit {
     const pcCreated: any = await this.pcService.createPc(pc).toPromise();
     if (pcCreated) {
       $('#createPc').modal('hide');
-      console.log({pcCreated});
       Swal.fire(
         `Pc con el nombre ${pcCreated.pcs.name}`,
         `Creado existosamente`,
@@ -117,7 +125,6 @@ export class PcComponent implements OnInit {
     } else {
       return false;
     }
-    console.log({pcCreated});
 
    } catch (error) {
      console.log(error);

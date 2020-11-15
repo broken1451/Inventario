@@ -90,7 +90,7 @@ export class PcService {
     }
   }
 
-  createPc(pc: Pc){
+  createPc(pc: Pc) {
     try {
       return this.httpClient.post(`${URL}${API.pcCreate}`, pc).pipe(
         map((pcCreated: Pc) => {
@@ -98,11 +98,28 @@ export class PcService {
         })
       );
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   getTypes() {
     return this.typePc;
+  }
+
+
+
+  cambiarImagen(archivo: File, id: string) {
+    try {
+      this.subirArchivoService.subirArchivoPc(archivo, id).then((data: any) => {
+        console.log({data});
+        // this.usuario.img = data.user.img;
+        this.pcSubject.next(data);
+        // this.authService.guardarStorage( id , this.token, this.usuario);
+      }).catch((err) => {
+        console.log(err);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
