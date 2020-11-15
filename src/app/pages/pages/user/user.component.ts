@@ -58,6 +58,14 @@ export class UserComponent implements OnInit {
           const userDeleted =  await this.userservice.deleteUser(user).toPromise();
           console.log({userDeleted});
           if (userDeleted) {
+            Swal.fire({
+              title: '',
+              text: 'El usuario fue borrado exitosamente',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              icon: 'success',
+              confirmButtonText: 'ok!',
+            });
             this.getAllUsers();
           } else {
             return false;

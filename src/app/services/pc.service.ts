@@ -55,7 +55,6 @@ export class PcService {
     try {
       return this.httpClient.delete(`${URL}${API.pcDelete}/${pc._id}`).pipe(
         map((pcdelete: any) => {
-          
           return pcdelete;
         })
       );

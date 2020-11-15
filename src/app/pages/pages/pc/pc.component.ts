@@ -49,6 +49,14 @@ export class PcComponent implements OnInit {
           const pcDeleted =  await this.pcService.deletePc(pc).toPromise();
           console.log({pcDeleted});
           if (pcDeleted) {
+            Swal.fire({
+              title: '',
+              text: 'El pc fue borrado exitosamente',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              icon: 'success',
+              confirmButtonText: 'ok!',
+            });
             this.getAllPcs();
           } else {
             return false;
