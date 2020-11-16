@@ -10,21 +10,38 @@ import { SubirArchivoService } from './subir-archivo.service';
 
 const URL = environment.url;
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PcService {
-
   private token: string;
   private pcSubject = new Subject<Pc>();
   public itemsObservable$ = this.pcSubject.asObservable();
+  public typePc: any[] = [];
 
-  constructor(private httpClient: HttpClient, private authService: AuthService, private subirArchivoService: SubirArchivoService) {
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService,
+    private subirArchivoService: SubirArchivoService
+  ) {
     // this.token =  localStorage.getItem('token');
+    this.typePc = [
+      {
+        name: 'Desktop',
+      },
+      {
+        name: 'NoteBook',
+      },
+      {
+        name: 'Oficina',
+      },
+      {
+        name: 'Gammer',
+      },
+    ];
   }
 
-  getAllPcs(desde?: number){
+  getAllPcs(desde?: number) {
     try {
       return this.httpClient.get(`${URL}${API.pc}?${desde}=0`).pipe(
         map((pcs: any) => {
@@ -36,8 +53,7 @@ export class PcService {
     }
   }
 
-
-  getPcById(id: string){
+  getPcById(id: string) {
     try {
       return this.httpClient.get(`${URL}${API.pc}/${id}`).pipe(
         map((pc: any) => {
@@ -49,9 +65,19 @@ export class PcService {
     }
   }
 
+  updatePc(pc: Pc) {
+    try {
+      return this.httpClient.put(`${URL}${API.pcUpdate}/${pc._id}`, pc).pipe(
+        map((pcUpdate: Pc) => {
+          return pcUpdate;
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-
-  deletePc(pc: Pc){
+  deletePc(pc: Pc) {
     try {
       return this.httpClient.delete(`${URL}${API.pcDelete}/${pc._id}`).pipe(
         map((pcdelete: any) => {
@@ -64,4 +90,36 @@ export class PcService {
     }
   }
 
+  createPc(pc: Pc) {
+    try {
+      return this.httpClient.post(`${URL}${API.pcCreate}`, pc).pipe(
+        map((pcCreated: Pc) => {
+          return pcCreated;
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getTypes() {
+    return this.typePc;
+  }
+
+
+
+  cambiarImagen(archivo: File, id: string) {
+    try {
+      this.subirArchivoService.subirArchivoPc(archivo, id).then((data: any) => {
+        console.log({data});
+        // this.usuario.img = data.user.img;
+        this.pcSubject.next(data);
+        // this.authService.guardarStorage( id , this.token, this.usuario);
+      }).catch((err) => {
+        console.log(err);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

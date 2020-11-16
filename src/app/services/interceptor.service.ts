@@ -80,7 +80,35 @@ export class InterceptorService implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError(this.manejarErr)
       );
+    } else if (request.url.includes(API.pcCreate) && token) {
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
+    }  else if (request.url.includes(API.pcUpdate) && token) {
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
     } else if (request.url.includes(API.pcDelete) && token) {
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
+    } else if (request.url.includes(API.pcupload) && token) {
+      console.log('user created');
       request = req.clone({
         setHeaders: {
           'x-token': `${ token }`
