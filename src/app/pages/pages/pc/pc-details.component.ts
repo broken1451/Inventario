@@ -104,10 +104,7 @@ export class PcDetailsComponent implements OnInit {
           this.cont = this.cont + 20;
           let barra: any = document.getElementById('barraProgreso');
           barra = barra.style.width = this.cont + '%';
-          // barra = barra.innerText = this.cont + '%';
-          // this.barraProgreso.nativeElement.style.width = this.cont + '%';
-          // this.modal.nativeElement.style.width = this.cont + '%';
-          // this.modal.nativeElement.innerHTML = this.cont + '%';
+          document.getElementById('barraProgreso').innerHTML = this.cont + '%';
           if (this.cont >= 100) {
             this.pcService.cambiarImagen(this.imagenSubir, this.pc._id);
             $('#imgPc').modal('hide');
