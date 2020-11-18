@@ -26,9 +26,9 @@ export class UserService {
   }
 
 
-  getAllUsers(){
+  getAllUsers(desde?: number){
     try {
-      return this.httpClient.get(`${URL}${API.user}`).pipe(
+      return this.httpClient.get(`${URL}${API.user}?desde=${desde}`).pipe(
         map((users: any) => {
           return users;
         })

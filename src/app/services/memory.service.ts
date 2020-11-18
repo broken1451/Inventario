@@ -21,7 +21,7 @@ export class MemoryService {
 
   getAllMemory(desde?: number) {
     try {
-      return this.httpClient.get(`${URL}${API.memory}?${desde}=0`).pipe(
+      return this.httpClient.get(`${URL}${API.memory}?desde=${desde}`).pipe(
         map((memorys: any) => {
           return memorys;
         })

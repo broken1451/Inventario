@@ -43,7 +43,7 @@ export class PcService {
 
   getAllPcs(desde?: number) {
     try {
-      return this.httpClient.get(`${URL}${API.pc}?${desde}=0`).pipe(
+      return this.httpClient.get(`${URL}${API.pc}?desde=${desde}`).pipe(
         map((pcs: any) => {
           return pcs;
         })
