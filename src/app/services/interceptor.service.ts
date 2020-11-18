@@ -117,8 +117,16 @@ export class InterceptorService implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError(this.manejarErr)
       );
-    }
-    else if (request.url.includes(API.pc) && token) {
+    } else if (request.url.includes(API.pc) && token) {
+      request = req.clone({
+        setHeaders: {
+          'x-token': `${ token }`
+        }
+      });
+      return next.handle(request).pipe(
+        catchError(this.manejarErr)
+      );
+    } else if (request.url.includes(API.memory) && token) {
       request = req.clone({
         setHeaders: {
           'x-token': `${ token }`

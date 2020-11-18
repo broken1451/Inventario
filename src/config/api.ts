@@ -10,8 +10,9 @@ export enum API {
     pcDelete = 'pc/delete',
     pcUpdate = 'pc/update',
     pcupload = 'pc/upload/pc/',
+    memory = 'memoria',
     imgUser = 'img/usuario/',
     imgPC = 'img/pc/',
     imgOtros = 'img/otros/',
-    imgMemoria = 'memoria/img/memoria/'
+    imgMemoria = 'memoria/img/'
 }

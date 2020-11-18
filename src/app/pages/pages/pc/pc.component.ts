@@ -15,7 +15,7 @@ declare const $: any;
 })
 export class PcComponent implements OnInit {
 
-  public pcs: Pc;
+  public pcs: Pc[] = [];
   public pc: Pc;
   public typePc: any[] = [];
   public formularioUpdatePc: FormGroup;

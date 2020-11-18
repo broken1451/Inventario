@@ -1,1 +1,125 @@
-<p>memoria works!</p>
+<div class="row">
+    <!-- <button  class="btn btn-primary btn-block" style="background: #7a00ff;" >Exportar pdf</button> -->
+      <div class="col-2 mb-4 ml-5 mt-4" *ngFor="let memory of memorys">
+        <div class="card h-100" >
+          <img [src]=" memory.img | imagen:'memoria'" style="width: 300px; height: 250px; margin: auto;" class="card-img-top" alt="...">
+          <!-- <img src='' style="width: 300px; height: 250px; margin: auto;" class="card-img-top" alt="..."> -->
+          <div class="card-body">
+            <h5 class="card-title">{{memory.name}}</h5>
+            <p class="card-text">{{memory.description}}</p>
+            <!-- <button  class="btn btn-primary btn-block" (click)="goTodetails(pcs._id)" style="background: #7a00ff;" >Ir al detalle</button> -->
+            <button  class="btn btn-primary btn-block" style="background: #7a00ff;" >Ir al detalle</button>
+            <!-- <button data-toggle="modal" data-target="#updatePc"  class="btn btn-info btn-block" (click)="update(pcs)" >Actualizar</button> -->
+            <button data-toggle="modal" data-target="#updatePc"  class="btn btn-info btn-block" >Actualizar</button>
+            <!-- <button  class="btn btn-danger btn-block" (click)="delete(pcs)"  >Eliminar</button> -->
+            <button  class="btn btn-danger btn-block" >Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+    <div class="sticky-container">
+      <ul class="sticky">
+          <li>
+            <!-- <button width="32" height="32" class="mdc-button mdc-button--raised icon-button filled-button--warning mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:16.625px, 15.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px;">
+            </button> -->
+            <button type="button" data-toggle="modal" data-target="#createPc" class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded" style="height: 100%; width: 56%; --mdc-ripple-fg-size:56px; --mdc-ripple-fg-scale:1.96926; --mdc-ripple-fg-translate-start:46.7188px, -13px; --mdc-ripple-fg-translate-end:18.7969px, -10px;">
+              <i class="material-icons mdc-button__icon">add</i>
+              <p><a style="text-decoration: none; color: white;"> Agregar Pc</a></p>
+            </button>
+          </li>
+      </ul>
+  </div>
+  
+  <!-- Modal create pc -->
+  <!-- <div data-backdrop="static" class="modal fade" id="createPc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style=" margin-top: 50%;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create pc</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formularioCreatePc"  name="myformCreated" novalidate  (ngSubmit)= 'createPc()' ngNativeValidate>
+              <div class="template-demo"> 
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                  <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+                    <input class="mdc-text-field__input" formControlName="name"  name='name'  placeholder="Nombre" required >
+                    <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
+                    <label for="text-field-hero-input" class="mdc-floating-label">Nombre</label>
+                  </div>
+                </div>  
+  
+                <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+                  <input class="mdc-text-field__input" required hidden>
+                  <select formControlName="type"  name='type' id="" class="form-control" required>
+                    <option [ngValue]="undefined" hidden>Seleccione un tipo de pc</option>
+                    <option *ngFor="let typePc of typePc">{{typePc.name}}</option>
+                  </select>
+                  <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
+                </div>
+  
+                <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+                  <input class="mdc-text-field__input" formControlName="description"  name='description'  placeholder="description" required >
+                  <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
+                  <label for="text-field-hero-input" class="mdc-floating-label">Descripcion</label>
+                </div>
+  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-block" style="background-color: #ff420f;" data-dismiss="modal">Close</button>
+                <button type="submit"  class="btn btn-primary btn-block"  style="background-color: var(--mdc-theme-primary, #7a00ff);">Crear Pc</button>
+              </div>
+            </form>
+  
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- Modal create pc -->
+  
+  
+  
+  <!-- modal update pc -->
+  <!-- <div data-backdrop="static" class="modal fade" id="updatePc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style=" margin-top: 50%;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar pc</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form  [formGroup]="formularioUpdatePc"  (ngSubmit)= 'updatePc()' ngNativeValidate>
+            <div class="template-demo">
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+                  <input class="mdc-text-field__input" formControlName="name"   name="name" placeholder="Nombre" required >
+                  <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
+                </div>
+              </div>                
+              <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+                <input class="mdc-text-field__input" formControlName="description"  name="description" placeholder="description" required >
+                <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
+              </div>
+            </div>
+  
+            <div *ngIf="formUpdate.name.value == '' && formUpdate.description.value == ''" class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
+              <p class="text-danger"> Ningun campo puede estar vacio </p>
+            </div>
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-block" style="background-color: #ff420f;" data-dismiss="modal">Close</button>
+              <button type="submit" [disabled]= 'formularioUpdatePc.invalid' class="btn btn-primary btn-block"  style="background-color: var(--mdc-theme-primary, #7a00ff);">Actualizar Pc</button>
+            </div>
+          </form>
+  
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- modal update pc -->
