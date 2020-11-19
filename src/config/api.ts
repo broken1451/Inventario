@@ -14,8 +14,9 @@ export enum API {
   memoryCreate = 'memoria/create',
   memoryUpdate = 'memoria/update',
   memoryDeleted = 'memoria/delete',
+  memoryUpload = 'memoria/upload/memoria/',
   imgUser = 'img/usuario/',
   imgPC = 'img/pc/',
   imgOtros = 'img/otros/',
-  imgMemoria = 'memoria/img/',
+  imgMemoria = 'img/memoria/',
 }

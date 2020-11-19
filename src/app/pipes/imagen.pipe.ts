@@ -13,11 +13,11 @@ export class ImagenPipe implements PipeTransform {
     let URLIMGOTROS = `${environment.url}${API.imgOtros}`;
     let URLIMGMEMORIA = `${environment.url}${API.imgMemoria}`;
 
-    if (!imagen || imagen == '') {
+    if (!imagen || imagen === '') {
       return `${URLIMGUSER}ddsds`;
     }
 
-    if ( tipoImagen == 'usuario') {
+    if ( tipoImagen === 'usuario') {
       URLIMGUSER = `${URLIMGUSER}${imagen}`;
       return URLIMGUSER;
     } else if (tipoImagen === 'pc') {

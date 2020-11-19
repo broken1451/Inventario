@@ -108,4 +108,20 @@ export class MemoryService {
     return this.typeMemory;
   }
 
+  cambiarImagen(archivo: File, id: string) {
+    try {
+      this.subirArchivoService
+        .subirArchivoMemory(archivo, id)
+        .then((data: any) => {
+          console.log({ data });
+          this.memorySubject.next(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 }
