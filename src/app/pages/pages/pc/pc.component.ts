@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pc } from 'src/app/classes/pc';
 import { PcService } from '../../../services/pc.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 declare const $: any;
@@ -20,19 +19,10 @@ export class PcComponent implements OnInit {
   public typePc: any[] = [];
   public formularioUpdatePc: FormGroup;
   public formularioCreatePc: FormGroup;
-  public imagenSubir: File;
-  public imagenSubirTemp: any;
-  public loading: any;
-  public cont: any;
-  public pc$: Subscription;
-  @ViewChild('barraProgreso', { static: true }) barraProgreso: ElementRef;
-  @ViewChild('customFile', { static: true }) customFile: ElementRef;
 
   constructor(private pcService: PcService, private router: Router) { }
 
   ngOnInit(): void {
-    this.loading = false;
-    this.cont = 0;
     this.getAllPcs();
     this.formularioUpdatePc = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -46,6 +36,7 @@ export class PcComponent implements OnInit {
     });
 
     this.typePc = this.pcService.getTypes();
+    console.log(this.typePc)
   }
 
   async getAllPcs() {
@@ -72,11 +63,15 @@ export class PcComponent implements OnInit {
 
 
   update(pc: Pc) {
-    this.pc = pc;
-    this.formularioUpdatePc.setValue({
-      name: pc.name,
-      description: pc.description,
-    });
+    try {
+      this.pc = pc;
+      this.formularioUpdatePc.setValue({
+        name: pc.name,
+        description: pc.description,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async updatePc(){
@@ -122,6 +117,11 @@ export class PcComponent implements OnInit {
         'success'
       );
       this.getAllPcs();
+      this.formularioCreatePc.setValue({
+        name: '',
+        type: '' || 'Desktop',
+        description: '',
+      });
     } else {
       return false;
     }
@@ -135,8 +135,8 @@ export class PcComponent implements OnInit {
   delete(pc: Pc) {
     Swal.fire({
       title: 'Esta seguro?',
-      text: 'Borrara el usurio ' + pc.name,
-      showCancelButton: true,
+      text: 'Borrara el Pc ' + pc.name,
+      showCancelButton: false,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       icon: 'warning',
@@ -153,8 +153,14 @@ export class PcComponent implements OnInit {
               cancelButtonColor: '#d33',
               icon: 'success',
               confirmButtonText: 'ok!',
+              showCancelButton: false,
+              allowOutsideClick: false
             });
             this.getAllPcs();
+            Swal.showLoading();
+            setTimeout(() => {
+              Swal.close();
+            }, 3000);
           } else {
             return false;
           }

@@ -8,11 +8,10 @@
             <h5 class="card-title">{{memory.name}}</h5>
             <p class="card-text">{{memory.description}}</p>
             <!-- <button  class="btn btn-primary btn-block" (click)="goTodetails(pcs._id)" style="background: #7a00ff;" >Ir al detalle</button> -->
-            <button  class="btn btn-primary btn-block" style="background: #7a00ff;" >Ir al detalle</button>
+            <button  class="btn btn-primary btn-block" (click)="goTodetails(memory._id)" style="background: #7a00ff;" >Ir al detalle</button>
             <!-- <button data-toggle="modal" data-target="#updatePc"  class="btn btn-info btn-block" (click)="update(pcs)" >Actualizar</button> -->
-            <button data-toggle="modal" data-target="#updatePc"  class="btn btn-info btn-block" >Actualizar</button>
-            <!-- <button  class="btn btn-danger btn-block" (click)="delete(pcs)"  >Eliminar</button> -->
-            <button  class="btn btn-danger btn-block" >Eliminar</button>
+            <button (click)="update(memory)" data-toggle="modal" data-target="#updatePc"  class="btn btn-info btn-block" >Actualizar</button>
+            <button  class="btn btn-danger btn-block" (click)="delete(memory)"  >Eliminar</button>
           </div>
         </div>
       </div>
@@ -33,7 +32,7 @@
   </div>
   
   <!-- Modal create pc -->
-  <!-- <div data-backdrop="static" class="modal fade" id="createPc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div data-backdrop="static" class="modal fade" id="createPc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" style=" margin-top: 50%;">
         <div class="modal-header">
@@ -43,7 +42,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="formularioCreatePc"  name="myformCreated" novalidate  (ngSubmit)= 'createPc()' ngNativeValidate>
+            <form [formGroup]="formularioCreateMemory"  name="myformCreated" novalidate  (ngSubmit)= 'createPc()' ngNativeValidate>
               <div class="template-demo"> 
                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                   <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
@@ -56,8 +55,8 @@
                 <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
                   <input class="mdc-text-field__input" required hidden>
                   <select formControlName="type"  name='type' id="" class="form-control" required>
-                    <option [ngValue]="undefined" hidden>Seleccione un tipo de pc</option>
-                    <option *ngFor="let typePc of typePc">{{typePc.name}}</option>
+                    <option [ngValue]="undefined" hidden>Seleccione un tipo de memoria</option>
+                    <option *ngFor="let typememory of typeMemory">{{typememory.name}}</option>
                   </select>
                   <div class="mdc-line-ripple" style="transform-origin: 123px center;"></div>
                 </div>
@@ -78,23 +77,23 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- Modal create pc -->
   
   
   
   <!-- modal update pc -->
-  <!-- <div data-backdrop="static" class="modal fade" id="updatePc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div data-backdrop="static" class="modal fade" id="updatePc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" style=" margin-top: 50%;">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Actualizar pc</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar Memoria</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form  [formGroup]="formularioUpdatePc"  (ngSubmit)= 'updatePc()' ngNativeValidate>
+          <form  [formGroup]="formularioUpdateMemory"  (ngSubmit)= 'updateMemory()' ngNativeValidate>
             <div class="template-demo">
               <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                 <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:448px; --mdc-ripple-fg-scale:1.6938; --mdc-ripple-fg-translate-start:-101px, -186px; --mdc-ripple-fg-translate-end:149.734px, -201.5px;">
@@ -114,12 +113,12 @@
   
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btn-block" style="background-color: #ff420f;" data-dismiss="modal">Close</button>
-              <button type="submit" [disabled]= 'formularioUpdatePc.invalid' class="btn btn-primary btn-block"  style="background-color: var(--mdc-theme-primary, #7a00ff);">Actualizar Pc</button>
+              <button type="submit" [disabled]= 'formularioUpdateMemory.invalid' class="btn btn-primary btn-block"  style="background-color: var(--mdc-theme-primary, #7a00ff);">Actualizar memoria</button>
             </div>
           </form>
   
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- modal update pc -->
