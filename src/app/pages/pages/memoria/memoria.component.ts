@@ -75,7 +75,9 @@ export class MemoriaComponent implements OnInit {
     try {
       this.memory.name = this.formUpdate.name.value;
       this.memory.description = this.formUpdate.description.value;
-      const memoryUpdate: any = await this.memoryService.updateMemory(this.memory).toPromise();
+      const memoryUpdate: any = await this.memoryService
+        .updateMemory(this.memory)
+        .toPromise();
       if (memoryUpdate) {
         $('#updatePc').modal('hide');
         console.log({ memoryUpdate });
@@ -87,7 +89,7 @@ export class MemoriaComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'ok!',
           showCancelButton: false,
-          allowOutsideClick: false
+          allowOutsideClick: false,
         });
         this.getAllMemory();
         Swal.showLoading();
@@ -112,18 +114,20 @@ export class MemoriaComponent implements OnInit {
         this.formCreate.type.value,
         this.formCreate.description.value
       );
-      const memoryCreated: any = await this.memoryService.createPc(memory).toPromise();
+      const memoryCreated: any = await this.memoryService
+        .createPc(memory)
+        .toPromise();
       if (memoryCreated) {
         $('#createPc').modal('hide');
         Swal.fire({
           title: '',
-          text:`La memoria con el nombre ${memoryCreated.memorys.name}`,
+          text: `La memoria con el nombre ${memoryCreated.memorys.name}`,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           icon: 'success',
           confirmButtonText: 'ok!',
           showCancelButton: false,
-          allowOutsideClick: false
+          allowOutsideClick: false,
         });
         this.getAllMemory();
         Swal.showLoading();

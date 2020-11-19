@@ -106,18 +106,19 @@ export class PcService {
     return this.typePc;
   }
 
-
-
   cambiarImagen(archivo: File, id: string) {
     try {
-      this.subirArchivoService.subirArchivoPc(archivo, id).then((data: any) => {
-        console.log({data});
-        // this.usuario.img = data.user.img;
-        this.pcSubject.next(data);
-        // this.authService.guardarStorage( id , this.token, this.usuario);
-      }).catch((err) => {
-        console.log(err);
-      });
+      this.subirArchivoService
+        .subirArchivoPc(archivo, id)
+        .then((data: any) => {
+          console.log({ data });
+          // this.usuario.img = data.user.img;
+          this.pcSubject.next(data);
+          // this.authService.guardarStorage( id , this.token, this.usuario);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (error) {
       console.log(error);
     }
