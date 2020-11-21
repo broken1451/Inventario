@@ -16,6 +16,7 @@ import { PipeModule } from '../../pipes/pipe.module';
 import { MomentModule } from 'angular2-moment';
 import { PcDetailsComponent } from './pc/pc-details.component';
 import { MemoryComponent } from './memoria/memory.component';
+import { OtrosDetailsComponent } from './otros/otros-details.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MemoryComponent } from './memoria/memory.component';
     ProfileComponent,
     PcDetailsComponent,
     MemoryComponent,
+    OtrosDetailsComponent,
   ],
   exports: [
     DashboardComponent,
@@ -36,7 +38,8 @@ import { MemoryComponent } from './memoria/memory.component';
     OtrosComponent,
     ProfileComponent,
     PcDetailsComponent,
-    MemoryComponent
+    MemoryComponent,
+    OtrosDetailsComponent
   ],
   imports: [
     CommonModule,

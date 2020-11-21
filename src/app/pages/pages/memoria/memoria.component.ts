@@ -41,7 +41,7 @@ export class MemoriaComponent implements OnInit {
       const memorys: any = await this.memoryService.getAllMemory().toPromise();
       if (memorys) {
         this.memorys = memorys.memorias;
-        console.log(this.memorys);
+        console.log(memorys);
       } else {
         this.memorys = null;
       }

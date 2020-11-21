@@ -8,6 +8,7 @@ import { MemoriaComponent } from './memoria/memoria.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PcDetailsComponent } from './pc/pc-details.component';
 import { MemoryComponent } from './memoria/memory.component';
+import { OtrosDetailsComponent } from './otros/otros-details.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,11 @@ const routes: Routes = [
     path: 'detailsMemory/:id',
     component: MemoryComponent,
     data: { titulo: 'Details', descrip: 'Esto es la detalles de la memorias ' },
+  },
+  {
+    path: 'detailsotros/:id',
+    component: OtrosDetailsComponent,
+    data: { titulo: 'Details', descrip: 'Esto es la detalles de otros ' },
   },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
 ];
