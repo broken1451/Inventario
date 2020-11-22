@@ -17,7 +17,6 @@ export class UserComponent implements OnInit {
   public loading: boolean;
   public noExiste: boolean;
   public desde: number;
-  public arrSig: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -105,17 +104,20 @@ export class UserComponent implements OnInit {
 
   async getAllUsers() {
     try {
-      const users: any = await this.userservice
-        .getAllUsers(this.desde)
-        .toPromise();
-      console.log(users);
-      if (users) {
-        this.users = users.users;
-        this.totalUser = users.usersNumbers;
-        console.log(this.totalUser);
-      } else {
-        this.users = [];
-      }
+      setTimeout(async () => {
+        this.loading = true;
+        const users: any = await this.userservice
+          .getAllUsers(this.desde)
+          .toPromise();
+        console.log(users);
+        if (users) {
+          this.users = users.users;
+          this.totalUser = users.usersNumbers;
+          this.loading = false;
+        } else {
+          this.users = [];
+        }
+      }, 3000);
     } catch (error) {
       console.log('error ', error);
     }

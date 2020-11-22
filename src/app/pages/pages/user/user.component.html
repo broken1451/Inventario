@@ -1,4 +1,17 @@
-<div class="page-wrapper mdc-toolbar-fixed-adjust">
+<div class="row" *ngIf="loading">
+  <div class="col">
+    <div class="alert-warning text-center">
+      <strong>Cargando</strong>
+      <br>
+      <i class="fa fa-refresh fa-2x fa-spin"></i>
+      <br>
+      <span>Espere por favor</span>
+  </div>
+  </div>
+</div>
+
+
+<div class="page-wrapper mdc-toolbar-fixed-adjust" *ngIf="!loading">
     <main class="content-wrapper">
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
@@ -48,25 +61,25 @@
         
         </div>
       </div>
-      <nav id="page" aria-label="Page navigation example">
+      <nav *ngIf="totalUser >= 5" id="page" aria-label="Page navigation example">
       
         <ul class="pagination justify-content-center">
           <li class="page-item active" id="btnb" >
             <button class="page-link" (click)="cambiarDesde(-3)" tabindex="-1">Atras</button>
           </li>
 
-          <li id="demo" class="page-item number active disabled back" style="cursor: pointer;"  (click)="cambiarDesdeNav(0)" >
+          <li id="demo" class="page-item number active disabled back" style="cursor: pointer;" >
             <a  class="page-link">1</a>
           </li>   
   
-          <li id="demo1"  class="page-item number disabled " style="cursor: pointer;" (click)="cambiarDesdeNav(+2)">
+          <li id="demo1"  class="page-item number disabled " style="cursor: pointer;" >
             <a  class="page-link">2</a>
           </li>  
 
-          <li id="demo2" class="page-item number disabled " style="cursor: pointer;" (click)="cambiarDesdeNav(+3)">
+          <li id="demo2" class="page-item number disabled " style="cursor: pointer;">
             <a  class="page-link">3</a>
           </li>   
-          <li id="demo3" class="page-item number disabled "  style="cursor: pointer;" (click)="cambiarDesdeNav(+4)">
+          <li id="demo3" class="page-item number disabled "  style="cursor: pointer;" >
             <a  class="page-link">4</a>
           </li>   
 
@@ -75,11 +88,8 @@
           </li>
         </ul>
       </nav>
+
     </main>
-
-
-
-
     <!-- partial:../../partials/_footer.html -->
     <footer>
       <div class="mdc-layout-grid">

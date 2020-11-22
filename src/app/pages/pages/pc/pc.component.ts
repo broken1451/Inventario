@@ -4,7 +4,6 @@ import { PcService } from '../../../services/pc.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 declare const $: any;
 
 @Component({
