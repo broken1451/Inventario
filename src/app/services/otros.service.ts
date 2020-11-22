@@ -5,7 +5,6 @@ import { Otros } from 'src/app/classes/otros';
 import { API } from 'src/config/api';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { AuthService } from './auth.service';
 import { SubirArchivoService } from './subir-archivo.service';
 
 const URL = environment.url;
