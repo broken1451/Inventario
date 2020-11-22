@@ -104,20 +104,20 @@ export class UserComponent implements OnInit {
 
   async getAllUsers() {
     try {
-      setTimeout(async () => {
-        this.loading = true;
-        const users: any = await this.userservice
-          .getAllUsers(this.desde)
-          .toPromise();
-        console.log(users);
-        if (users) {
+      const users: any = await this.userservice
+      .getAllUsers(this.desde)
+      .toPromise();
+      if (users) {
+
+        setTimeout(() => {
+          this.loading = true;
           this.users = users.users;
+          this.loading =  false;
           this.totalUser = users.usersNumbers;
-          this.loading = false;
+        }, 800);
         } else {
           this.users = [];
         }
-      }, 3000);
     } catch (error) {
       console.log('error ', error);
     }
