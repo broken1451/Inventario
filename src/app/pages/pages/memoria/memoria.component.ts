@@ -17,6 +17,8 @@ export class MemoriaComponent implements OnInit {
   public typeMemory: any[] = [];
   public formularioUpdateMemory: FormGroup;
   public formularioCreateMemory: FormGroup;
+  public desde: number;
+  public totalmemory: number;
 
   constructor(private memoryService: MemoryService, private router: Router) {}
 
@@ -34,13 +36,16 @@ export class MemoriaComponent implements OnInit {
     });
 
     this.typeMemory = this.memoryService.getTypes();
+    this.desde = 0;
+    this.totalmemory = 0;
   }
 
   async getAllMemory() {
     try {
-      const memorys: any = await this.memoryService.getAllMemory().toPromise();
+      const memorys: any = await this.memoryService.getAllMemory(this.desde).toPromise();
       if (memorys) {
         this.memorys = memorys.memorias;
+        this.totalmemory  = memorys.memoriasNumbers;
         console.log(memorys);
       } else {
         this.memorys = null;
@@ -79,7 +84,7 @@ export class MemoriaComponent implements OnInit {
         .updateMemory(this.memory)
         .toPromise();
       if (memoryUpdate) {
-        $('#updatePc').modal('hide');
+        $('#updateMemory').modal('hide');
         console.log({ memoryUpdate });
         Swal.fire({
           title: 'Actualizado existosamente',
@@ -118,7 +123,7 @@ export class MemoriaComponent implements OnInit {
         .createPc(memory)
         .toPromise();
       if (memoryCreated) {
-        $('#createPc').modal('hide');
+        $('#createMemory').modal('hide');
         Swal.fire({
           title: '',
           text: `La memoria con el nombre ${memoryCreated.memorys.name}`,
@@ -187,5 +192,65 @@ export class MemoriaComponent implements OnInit {
 
   goTodetails(id: string) {
     this.router.navigate(['/detailsMemory/', id]);
+  }
+
+  cambiarDesde(valor: number) {
+    const desde = this.desde + valor;
+
+    if (desde >= this.totalmemory) {
+      return;
+    }
+
+    if (desde < 0) {
+      return;
+    }
+
+    this.desde = this.desde + valor;
+    const next: any = document.getElementsByClassName('number');
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < next.length; i++) {
+      const element = next[i];
+      if (desde === 0 && element.textContent === '1') {
+        document.getElementById('demo').classList.add('back');
+        document.getElementById('demo1').classList.remove('back');
+        document.getElementById('demo').classList.add('active');
+        document.getElementById('demo1').classList.remove('active');
+        document.getElementById('demo2').classList.remove('active');
+        document.getElementById('demo3').classList.remove('active');
+        document.getElementById('demo').classList.add('back');
+        document.getElementById('demo1').classList.remove('back');
+        document.getElementById('btnb').classList.add('active');
+        document.getElementById('btns').classList.remove('active');
+      } else if (desde === 3 && element.textContent === '2') {
+        document.getElementById('demo').classList.remove('back');
+        document.getElementById('demo1').classList.add('back');
+        document.getElementById('demo').classList.remove('active');
+        document.getElementById('demo1').classList.add('active');
+        document.getElementById('demo2').classList.remove('active');
+        document.getElementById('demo3').classList.remove('active');
+        document.getElementById('demo1').classList.add('back');
+        document.getElementById('demo2').classList.remove('back');
+      } else if (desde === 6 && element.textContent === '3') {
+        document.getElementById('demo1').classList.remove('back');
+        document.getElementById('demo2').classList.add('back');
+        document.getElementById('demo').classList.remove('active');
+        document.getElementById('demo1').classList.remove('active');
+        document.getElementById('demo2').classList.add('active');
+        document.getElementById('demo3').classList.remove('active');
+        document.getElementById('demo2').classList.add('back');
+        document.getElementById('demo3').classList.remove('back');
+      } else if (desde === 9 && element.textContent === '4') {
+        document.getElementById('demo2').classList.remove('back');
+        document.getElementById('demo3').classList.add('back');
+        document.getElementById('demo').classList.remove('active');
+        document.getElementById('demo1').classList.remove('active');
+        document.getElementById('demo2').classList.remove('active');
+        document.getElementById('demo3').classList.add('active');
+        document.getElementById('btnb').classList.remove('active');
+        document.getElementById('btns').classList.add('active');
+      }
+    }
+
+    this.getAllMemory();
   }
 }

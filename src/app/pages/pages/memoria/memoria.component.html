@@ -1,21 +1,47 @@
-<div class="row">
-    <!-- <button  class="btn btn-primary btn-block" style="background: #7a00ff;" >Exportar pdf</button> -->
-      <div class="col-2 mb-4 ml-5 mt-4" *ngFor="let memory of memorys">
+
+
+    <div class="row row-cols-1 row-cols-md-3 ml-4 mt-4">
+      <div class="col-12 mb-4"  *ngFor="let memory of memorys">
         <div class="card h-100" >
           <img [src]=" memory.img | imagen:'memoria'" style="width: 300px; height: 250px; margin: auto;" class="card-img-top" alt="...">
-          <!-- <img src='' style="width: 300px; height: 250px; margin: auto;" class="card-img-top" alt="..."> -->
           <div class="card-body">
             <h5 class="card-title">{{memory.name}}</h5>
             <p class="card-text">{{memory.description}}</p>
-            <!-- <button  class="btn btn-primary btn-block" (click)="goTodetails(pcs._id)" style="background: #7a00ff;" >Ir al detalle</button> -->
-            <button  class="btn btn-primary btn-block" (click)="goTodetails(memory._id)" style="background: #7a00ff;" >Ir al detalle</button>
-            <!-- <button data-toggle="modal" data-target="#updatePc"  class="btn btn-info btn-block" (click)="update(pcs)" >Actualizar</button> -->
-            <button (click)="update(memory)" data-toggle="modal" data-target="#updatePc"  class="btn btn-info btn-block" >Actualizar</button>
+             <button  class="btn btn-primary btn-block" (click)="goTodetails(memory._id)" style="background: #7a00ff;" >Ir al detalle</button>
+           <button (click)="update(memory)" data-toggle="modal" data-target="#updateMemory"  class="btn btn-info btn-block" >Actualizar</button>
             <button  class="btn btn-danger btn-block" (click)="delete(memory)"  >Eliminar</button>
           </div>
         </div>
       </div>
     </div>
+
+    <nav class="navbar navbar-default" style="justify-content: center;"  id="page" aria-label="Page navigation example">
+    
+      <ul class="pagination justify-content-center">
+        <li class="page-item active" id="btnb" >
+          <button class="page-link" (click)="cambiarDesde(-3)" tabindex="-1">Atras</button>
+        </li>
+  
+        <li id="demo" class="page-item number active disabled back" style="cursor: pointer;" >
+          <a  class="page-link">1</a>
+        </li>   
+  
+        <li id="demo1"  class="page-item number disabled " style="cursor: pointer;" >
+          <a  class="page-link">2</a>
+        </li>  
+  
+        <li id="demo2" class="page-item number disabled " style="cursor: pointer;">
+          <a  class="page-link">3</a>
+        </li>   
+        <li id="demo3" class="page-item number disabled "  style="cursor: pointer;" >
+          <a  class="page-link">4</a>
+        </li>   
+  
+        <li class="page-item" id="btns" (click)="cambiarDesde(+3)">
+          <button class="page-link">Siguiente</button>
+        </li>
+      </ul>
+    </nav>
   
   
     <div class="sticky-container">
@@ -23,20 +49,20 @@
           <li>
             <!-- <button width="32" height="32" class="mdc-button mdc-button--raised icon-button filled-button--warning mdc-ripple-upgraded" style="--mdc-ripple-fg-size:21px; --mdc-ripple-fg-scale:2.90056; --mdc-ripple-fg-translate-start:16.625px, 15.5px; --mdc-ripple-fg-translate-end:7.5px, 7.5px;">
             </button> -->
-            <button type="button" data-toggle="modal" data-target="#createPc" class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded" style="height: 100%; width: 56%; --mdc-ripple-fg-size:56px; --mdc-ripple-fg-scale:1.96926; --mdc-ripple-fg-translate-start:46.7188px, -13px; --mdc-ripple-fg-translate-end:18.7969px, -10px;">
+            <button type="button" data-toggle="modal" data-target="#createMemory" class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded" style="height: 100%; width: 56%; --mdc-ripple-fg-size:56px; --mdc-ripple-fg-scale:1.96926; --mdc-ripple-fg-translate-start:46.7188px, -13px; --mdc-ripple-fg-translate-end:18.7969px, -10px;">
               <i class="material-icons mdc-button__icon">add</i>
-              <p><a style="text-decoration: none; color: white;"> Agregar Pc</a></p>
+              <p><a style="text-decoration: none; color: white;"> Agregar Memoria</a></p>
             </button>
           </li>
       </ul>
   </div>
   
   <!-- Modal create pc -->
-  <div data-backdrop="static" class="modal fade" id="createPc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div data-backdrop="static" class="modal fade" id="createMemory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" style=" margin-top: 50%;">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create pc</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Create Memory</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -83,7 +109,7 @@
   
   
   <!-- modal update pc -->
-  <div data-backdrop="static" class="modal fade" id="updatePc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div data-backdrop="static" class="modal fade" id="updateMemory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" style=" margin-top: 50%;">
         <div class="modal-header">

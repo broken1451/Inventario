@@ -17,6 +17,8 @@ export class OtrosComponent implements OnInit {
   public otro: Otros;
   public formularioUpdateOtros: FormGroup;
   public formularioCreateOtros: FormGroup;
+  public desde: number;
+  public totalotros: number;
 
   constructor(private otrosService: OtrosService, private router: Router) { }
 
@@ -31,14 +33,17 @@ export class OtrosComponent implements OnInit {
       name: new FormControl('', Validators.required),
       description: new FormControl('', [Validators.required]),
     });
+    this.desde = 0;
+    this.totalotros = 0;
   }
 
   async getAllOtros() {
     try {
-     const otros: any = await this.otrosService.getAllOtros().toPromise();
+     const otros: any = await this.otrosService.getAllOtros(this.desde).toPromise();
      if (otros) {
        console.log(otros);
        this.otros = otros.otros;
+       this.totalotros = otros.otrossNumbers;
      } else {
        this.otros = null;
      }
@@ -162,6 +167,67 @@ export class OtrosComponent implements OnInit {
         );
       }
     });
+  }
+
+
+  cambiarDesde(valor: number) {
+    const desde = this.desde + valor;
+
+    if (desde >= this.totalotros) {
+      return;
+    }
+
+    if (desde < 0) {
+      return;
+    }
+
+    this.desde = this.desde + valor;
+    const next: any = document.getElementsByClassName('number');
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < next.length; i++) {
+      const element = next[i];
+      if (desde === 0 && element.textContent === '1') {
+        document.getElementById('demo').classList.add('back');
+        document.getElementById('demo1').classList.remove('back');
+        document.getElementById('demo').classList.add('active');
+        document.getElementById('demo1').classList.remove('active');
+        document.getElementById('demo2').classList.remove('active');
+        document.getElementById('demo3').classList.remove('active');
+        document.getElementById('demo').classList.add('back');
+        document.getElementById('demo1').classList.remove('back');
+        document.getElementById('btnb').classList.add('active');
+        document.getElementById('btns').classList.remove('active');
+      } else if (desde === 3 && element.textContent === '2') {
+        document.getElementById('demo').classList.remove('back');
+        document.getElementById('demo1').classList.add('back');
+        document.getElementById('demo').classList.remove('active');
+        document.getElementById('demo1').classList.add('active');
+        document.getElementById('demo2').classList.remove('active');
+        document.getElementById('demo3').classList.remove('active');
+        document.getElementById('demo1').classList.add('back');
+        document.getElementById('demo2').classList.remove('back');
+      } else if (desde === 6 && element.textContent === '3') {
+        document.getElementById('demo1').classList.remove('back');
+        document.getElementById('demo2').classList.add('back');
+        document.getElementById('demo').classList.remove('active');
+        document.getElementById('demo1').classList.remove('active');
+        document.getElementById('demo2').classList.add('active');
+        document.getElementById('demo3').classList.remove('active');
+        document.getElementById('demo2').classList.add('back');
+        document.getElementById('demo3').classList.remove('back');
+      } else if (desde === 9 && element.textContent === '4') {
+        document.getElementById('demo2').classList.remove('back');
+        document.getElementById('demo3').classList.add('back');
+        document.getElementById('demo').classList.remove('active');
+        document.getElementById('demo1').classList.remove('active');
+        document.getElementById('demo2').classList.remove('active');
+        document.getElementById('demo3').classList.add('active');
+        document.getElementById('btnb').classList.remove('active');
+        document.getElementById('btns').classList.add('active');
+      }
+    }
+
+    this.getAllOtros();
   }
 
 }

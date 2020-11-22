@@ -41,3 +41,14 @@
 .sticky li p a:hover{
     text-decoration:underline;
 }
+
+.back {
+    background: blue !important;
+  }
+  
+  .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+  

@@ -1,6 +1,6 @@
-<div class="row">
-  <!-- <button  class="btn btn-primary btn-block" style="background: #7a00ff;" >Exportar pdf</button> -->
-    <div class="col-2 mb-4 ml-5 mt-4" *ngFor="let pcs of pcs">
+  <div class="row row-cols-1 row-cols-md-3 ml-4 mt-4">
+    <div class="col-12 mb-4"  *ngFor="let pcs of pcs">
+    <!-- <button  class="btn btn-primary btn-block" style="background: #7a00ff;" >Exportar pdf</button> -->
       <div class="card h-100" >
         <img [src]=" pcs.img | imagen:'pc'" style="width: 300px; height: 250px; margin: auto;" class="card-img-top" alt="...">
         <div class="card-body">
@@ -13,6 +13,34 @@
       </div>
     </div>
   </div>
+
+  <nav class="navbar navbar-default" style="justify-content: center;"  id="page" aria-label="Page navigation example">
+    
+    <ul class="pagination justify-content-center">
+      <li class="page-item active" id="btnb" >
+        <button class="page-link" (click)="cambiarDesde(-3)" tabindex="-1">Atras</button>
+      </li>
+
+      <li id="demo" class="page-item number active disabled back" style="cursor: pointer;" >
+        <a  class="page-link">1</a>
+      </li>   
+
+      <li id="demo1"  class="page-item number disabled " style="cursor: pointer;" >
+        <a  class="page-link">2</a>
+      </li>  
+
+      <li id="demo2" class="page-item number disabled " style="cursor: pointer;">
+        <a  class="page-link">3</a>
+      </li>   
+      <li id="demo3" class="page-item number disabled "  style="cursor: pointer;" >
+        <a  class="page-link">4</a>
+      </li>   
+
+      <li class="page-item" id="btns" (click)="cambiarDesde(+3)">
+        <button class="page-link">Siguiente</button>
+      </li>
+    </ul>
+  </nav>
 
 
   <div class="sticky-container">
